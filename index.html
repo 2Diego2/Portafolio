@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Nombre | Desarrollador</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/proyectos.css">
+    <link rel="stylesheet" href="css/experiencia.css">
+
+
+</head>
+<body>
+
+    <section id="hero" class="scene full-screen">
+    
+        <h1 class="hero-title">HOLA.<br>Diego.</h1>
+        <p class="hero-subtitle">Estudiante y Desarrollador Full Stack.</p>
+        <div class="descargar-cv">
+            <button href="assets/Cv.Diego.L.Abelleyra.pdf" download>Descargar CV</button>
+        </div>
+        <div class="contacto">
+        <i class="fa-brands fa-linkedin"></i>
+        <i class="fa-brands fa-github-alt"></i>
+        <i class="fa-solid fa-at"></i>
+        </div>
+        <div class="scroll-indicator">↓</div>
+    </section>
+
+    <header id="sticky-header" class="hidden">
+        <div class="brand">TU APELLIDO / DEV</div>
+        <nav>...</nav>
+    </header>
+
+    <header class="header">
+    <a class="logo">[]</a>
+     <nav class="nav">
+    <a class="Stack">Stack / </a>
+    <a class="proyectos">Proyectos / </a>
+    <a class="Experiencia">Experiencia /</a>
+    <a class="boton-cv" href="assets/Cv.Diego.L.Abelleyra.pdf" download>CV</a>
+    </nav>
+    </header>
+
+    <section id="tech-stack" class="scene">
+        <h2 class="section-title">EL ARSENAL</h2>
+        <div class="floating-tech"><img src="./assets/html-icon.png" alt="Html"></div>
+        <div class="floating-tech"><img src="./assets/css-icon.png" alt="Css"></div>
+        <div class="floating-tech"><img src="./assets/react-js-icon.png" alt="React"></div>
+        <div class="floating-tech"><img src="./assets/javascript.png" alt="Js"></div>
+        <div class="floating-tech"><img src="./assets/node-js-icon.png" alt="Node"></div>
+        <div class="floating-tech"><img src="./assets/mongodb-icon.png" alt="MongoDB"></div>
+        <div class="floating-tech"><img src="./assets/azure-sql-database-icon.png" alt="Sql"></div>
+        <div class="floating-tech"><img src="./assets/mysql-icon.png" alt="MySQL"></div>
+    </section>
+
+
+
+      <section id="proyectos" class="scene">
+        <h2 class="section-title">MIS PROYECTOS</h2>
+        <div class="contenedor-proyectos" id="contenedorProyectos"></div>
+    </section>
+    <script src="js/header.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/proyectos.js"></script>
+
+    <section id="experiencia" class="seccion-experiencia">
+  <div class="contenedor-principal">
+    
+    <h2 class="titulo-seccion">
+     MI RECORRIDO
+    </h2>
+
+    <div class="linea-tiempo">
+      
+      <div class="item-experiencia">
+        <div class="contenido-tarjeta">
+          <div class="encabezado-tarjeta">
+            <h3 class="cargo-trabajo">Freelancer</h3>
+            <span class="fecha">
+              <i class="fa-regular fa-calendar-days"></i> Enero 2026 - Presente
+            </span>
+          </div>
+          <p class="descripcion-trabajo">
+            Liderazgo en el relevamiento de requerimientos y documentación técnica.
+            Colaboración directa con el cliente para asegurar la calidad del producto.
+          </p>
+          <!-- 
+         
+          <ul class="lista-tecnologias">
+            <li><i class="fa-solid fa-code"></i> SQL</li>
+            <li><i class="fa-solid fa-sitemap"></i> UML</li>
+            <li><i class="fa-brands fa-jira"></i> Jira</li>
+          </ul> -->
+        </div>
+      </div>
+
+      <div class="item-experiencia">
+        <div class="contenido-tarjeta">
+          <div class="encabezado-tarjeta">
+            <h3 class="cargo-trabajo">Desarrollador Full Stack Trainee</h3>
+            <span class="empresa">
+              <a href="https://crombie.dev/es/" target="_blank" rel="noopener noreferrer">
+                <img src="./assets/LogoCrombie.png" alt="Crombie">
+              </a>
+            </span>
+            <span class="fecha">
+              <i class="fa-regular fa-calendar-days"></i> Junio 2025 - Noviembre 2025
+            </span>
+          </div>
+          <p class="descripcion-trabajo">
+           Participé activamente en el diseño y desarrollo de dos proyectos full-stack, desde la
+            conceptualización hasta la implementación de funcionalidades clave.
+          </p>
+          <ul class="lista-tecnologias">
+            <li><i class="fa-brands fa-js"></i> JavaScript</li>
+            <li><i class="fa-brands fa-react"></i> React</li>
+            <li><i class="fa-brands fa-node"></i> Node.js</li>
+            <li><i class="fa-brands fa-html5"></i> HTML</li>
+            <li><i class="fa-brands fa-css3"></i> CSS</li>
+            <li><i class="fa-brands fa-aws"></i> AWS</li>
+            <li><i class="fa-solid fa-database"></i> MongoDB</li>
+
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+</body>
+</html>

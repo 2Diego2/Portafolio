@@ -1,0 +1,56 @@
+/* Style the header with a grey background and some padding */
+.header {
+     
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box  ;
+  display: flex;
+justify-content: space-around ;
+align-items: center;
+padding: 15px;
+position: sticky;
+top: 0;
+z-index: 10;
+      
+      opacity: 0;                   /* Invisible */
+      transition: all 0.9s ease-out; /* La animación durará 0.8 segundos */
+}
+.nav {
+display: flex;
+gap: 20px;
+}
+
+
+/* ESTADO FINAL (Cuando el JS agrega esta clase) */
+ .header.visibl {
+      opacity: 1;                /* Totalmente visible */
+      transform: translateY(0);  /* Vuelve a su posición original */
+ }
+
+
+
+
+
+
+
+
+/* ESTADO INICIAL (Antes de ser visto) */
+  .floating-tech {
+       width: 300px;
+      height: 200px;
+      color: white;
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 50px 0;
+      
+      opacity: 0;                   /* Invisible */
+      transition: all 0.9s ease-out; /* La animación durará 0.8 segundos */
+    }
+
+    /* ESTADO FINAL (Cuando el JS agrega esta clase) */
+    .floating-tech.visible {
+      opacity: 1;                /* Totalmente visible */
+      transform: translateY(0);  /* Vuelve a su posición original */
+    }

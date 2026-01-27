@@ -1,0 +1,39 @@
+:root {
+    --bg-color: #111111;
+    --text-color: #ffffff;
+    --accent-color: #61dafb;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Helvetica Neue', sans-serif; /* O la fuente que elijas */
+    margin: 0;
+    overflow-x: hidden; /* Evita scroll horizontal indeseado */
+}
+
+/* Clases de utilidad */
+.full-screen {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+}
+
+/* El Header Pegajoso */
+#sticky-header {
+    position: fixed; /* O sticky dependiendo del efecto */
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    z-index: 100;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+    transition: transform 0.3s ease;
+}
+
+.hidden {
+    transform: translateY(-100%); /* Lo esconde hacia arriba */
+}

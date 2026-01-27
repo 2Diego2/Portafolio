@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplo Intersection Observer</title>
+  <style>
+    /* Estilos Generales para que se vea bien */
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      background-color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .spacer {
+      height: 100vh; /* Ocupa toda la altura de la pantalla para forzar scroll */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      color: #888;
+    }
+
+    /* --- LA MAGIA DEL CSS --- */
+    
+    .caja {
+      width: 300px;
+      height: 200px;
+      background-color: #3498db;
+      color: white;
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 50px 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+      /* ESTADO INICIAL (Antes de ser visto) */
+      opacity: 0;                   /* Invisible */
+      transform: translateY(100px); /* Desplazado 100px hacia abajo */
+      transition: all 0.8s ease-out; /* La animación durará 0.8 segundos */
+    }
+
+    /* ESTADO FINAL (Cuando el JS agrega esta clase) */
+    .caja.visible {
+      opacity: 1;                /* Totalmente visible */
+      transform: translateY(0);  /* Vuelve a su posición original */
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="spacer">Scroll hacia abajo 👇</div>
+
+  <div class="caja">Soy la Caja 1</div>
+  <div class="caja">Soy la Caja 2</div>
+  <div class="caja">Soy la Caja 3</div>
+  <div class="caja">Soy la Caja 4</div>
+
+  <div class="spacer">Fin del ejemplo</div>
+
+  <script>
+    // --- LÓGICA JAVASCRIPT ---
+
+    // 1. Configuración
+    const opciones = {
+      root: null,      // Viewport del navegador
+      rootMargin: '0px', 
+      threshold: 0.5   // Se activa cuando el 50% de la caja es visible
+    };
+
+    // 2. Definir el Callback (Qué hacer)
+    const callback = (entradas, observador) => {
+      entradas.forEach((entrada) => {
+        // Si el elemento está intersectando (es visible según el threshold)
+        if (entrada.isIntersecting) {
+          
+          // Agregamos la clase 'visible' que tiene el CSS final
+          entrada.target.classList.add('visible');
+          
+          // (Opcional) Dejamos de observar para que no se anime de nuevo si subes y bajas
+          observador.unobserve(entrada.target);
+        }
+      });
+    };
+
+    // 3. Crear el Observador
+    const observador = new IntersectionObserver(callback, opciones);
+
+    // 4. Seleccionar elementos y decirles que sean observados
+    const cajas = document.querySelectorAll('.caja');
+    cajas.forEach(caja => observador.observe(caja));
+
+  </script>
+</body>
+</html>

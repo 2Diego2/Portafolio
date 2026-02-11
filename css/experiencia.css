@@ -98,14 +98,14 @@
   margin-bottom: 15px;
 }
 
-.cargo-trabajo {
+.cargo-trabajo, .tipo-trabajo {
   font-size: 1.35rem;
   color: #fff;
   margin: 0 0 8px 0;
   font-weight: 600;
 }
 
-.fecha {
+.fecha, .tipo-trabajo {
   display: flex;
   align-items: center;
   gap: 8px;

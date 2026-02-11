@@ -34,23 +34,420 @@ gap: 20px;
 
 
 
-/* ESTADO INICIAL (Antes de ser visto) */
-  .floating-tech {
-       width: 300px;
-      height: 200px;
-      color: white;
-      font-size: 1.5rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 50px 0;
-      
-      opacity: 0;                   /* Invisible */
-      transition: all 0.9s ease-out; /* La animación durará 0.8 segundos */
-    }
+/* ============ ESTILOS DE SECCIÓN DE TECNOLOGÍAS ============ */
 
-    /* ESTADO FINAL (Cuando el JS agrega esta clase) */
-    .floating-tech.visible {
-      opacity: 1;                /* Totalmente visible */
-      transform: translateY(0);  /* Vuelve a su posición original */
-    }
+/* Contenedor de la sección con diseño de dispersión */
+#tech-stack {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 50px;
+}
+
+/* ESTADO INICIAL: Todos los iconos en el centro, invisibles */
+.floating-tech {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.floating-tech img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ESTADO FINAL: Visible y comienza la dispersión */
+.floating-tech.visible {
+  opacity: 1;
+}
+
+/* ============ ANIMACIONES DE DISPERSIÓN ============ */
+
+/* Icono 1 - HTML5: Arriba-Izquierda */
+@keyframes dispersion-arriba-izquierda {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  50% {
+    top: 30%;
+    left: 25%;
+  }
+  100% {
+    top: 20%;
+    left: 15%;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Icono 2 - CSS3: Arriba */
+@keyframes dispersion-arriba {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  50% {
+    top: 25%;
+    left: 50%;
+  }
+  100% {
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Icono 3 - React: Arriba-Derecha */
+@keyframes dispersion-arriba-derecha {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  50% {
+    top: 30%;
+    left: 75%;
+  }
+  100% {
+    top: 20%;
+    left: 85%;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Icono 4 - JavaScript: Derecha */
+@keyframes dispersion-derecha {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  50% {
+    top: 50%;
+    left: 75%;
+  }
+  100% {
+    top: 50%;
+    left: 90%;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Icono 5 - Node.js: Abajo-Derecha */
+@keyframes dispersion-abajo-derecha {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  50% {
+    top: 70%;
+    left: 75%;
+  }
+  100% {
+    top: 80%;
+    left: 85%;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Icono 6 - MongoDB: Abajo */
+@keyframes dispersion-abajo {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  50% {
+    top: 75%;
+    left: 50%;
+  }
+  100% {
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Icono 7 - SQL: Abajo-Izquierda */
+@keyframes dispersion-abajo-izquierda {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  50% {
+    top: 70%;
+    left: 25%;
+  }
+  100% {
+    top: 80%;
+    left: 15%;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Icono 8 - MySQL: Izquierda */
+@keyframes dispersion-izquierda {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  50% {
+    top: 50%;
+    left: 25%;
+  }
+  100% {
+    top: 50%;
+    left: 10%;
+    transform: translate(-50%, -50%) scale(1);
+}
+}
+
+/* ============ ANIMACIONES FLOTANTES CONTINUAS ============ */
+
+/* Animación 1: Movimiento Flotante Ondulante (Wavy Float) */
+@keyframes flotante-ondulante {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  25% {
+    transform: translateY(-8px) translateX(3px);
+  }
+  50% {
+    transform: translateY(-4px) translateX(-3px);
+  }
+  75% {
+    transform: translateY(-10px) translateX(2px);
+  }
+}
+
+/* Animación 2: Deriva Lenta (Drift) */
+@keyframes deriva-lenta {
+  0%, 100% {
+    transform: translateX(0px) translateY(0px);
+  }
+  33% {
+    transform: translateX(6px) translateY(-3px);
+  }
+  66% {
+    transform: translateX(-6px) translateY(3px);
+  }
+}
+
+/* Animación 3: Órbita Suave (Orbit) */
+@keyframes orbita-suave {
+  0% {
+    transform: rotate(0deg) translateX(4px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(4px) rotate(-360deg);
+  }
+}
+
+/* ============ APLICAR ANIMACIONES A CADA ICONO ============ */
+
+/* Icono 1 - HTML5 */
+.floating-tech.visible:nth-of-type(1) {
+  animation: dispersion-arriba-izquierda 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.floating-tech.visible:nth-of-type(1) img {
+  animation: flotante-ondulante 4s ease-in-out 2.5s infinite;
+}
+
+/* Icono 2 - CSS3 */
+.floating-tech.visible:nth-of-type(2) {
+  animation: dispersion-arriba 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.floating-tech.visible:nth-of-type(2) img {
+  animation: deriva-lenta 5s ease-in-out 2.5s infinite;
+}
+
+/* Icono 3 - React */
+.floating-tech.visible:nth-of-type(3) {
+  animation: dispersion-arriba-derecha 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.floating-tech.visible:nth-of-type(3) img {
+  animation: orbita-suave 6s linear 2.5s infinite;
+}
+
+/* Icono 4 - JavaScript */
+.floating-tech.visible:nth-of-type(4) {
+  animation: dispersion-derecha 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.floating-tech.visible:nth-of-type(4) img {
+  animation: flotante-ondulante 4.5s ease-in-out 2.5s infinite;
+}
+
+/* Icono 5 - Node.js */
+.floating-tech.visible:nth-of-type(5) {
+  animation: dispersion-abajo-derecha 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.floating-tech.visible:nth-of-type(5) img {
+  animation: deriva-lenta 5.5s ease-in-out 2.5s infinite;
+}
+
+/* Icono 6 - MongoDB */
+.floating-tech.visible:nth-of-type(6) {
+  animation: dispersion-abajo 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.floating-tech.visible:nth-of-type(6) img {
+  animation: orbita-suave 6.5s linear 2.5s infinite;
+}
+
+/* Icono 7 - SQL */
+.floating-tech.visible:nth-of-type(7) {
+  animation: dispersion-abajo-izquierda 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.floating-tech.visible:nth-of-type(7) img {
+  animation: flotante-ondulante 5s ease-in-out 2.5s infinite;
+}
+
+/* Icono 8 - MySQL */
+.floating-tech.visible:nth-of-type(8) {
+  animation: dispersion-izquierda 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.floating-tech.visible:nth-of-type(8) img {
+  animation: deriva-lenta 6s ease-in-out 2.5s infinite;
+}
+
+/* Pausar animaciones al hacer hover */
+.floating-tech:hover img {
+  animation-play-state: paused;
+}
+
+.floating-tech:hover {
+  animation-play-state: paused;
+  z-index: 100; /* Traer al frente */
+  filter: none; /* Quitar borrosidad al seleccionado */
+  opacity: 1;
+}
+
+/* EFECTO DE FOCO: Desenfoque a todos los iconos cuando uno tiene hover */
+#tech-stack:hover .floating-tech:not(:hover) {
+  filter: blur(3px);
+  opacity: 0.5;
+  transition: all 0.4s ease;
+}
+
+/* ESTILOS DEL TOOLTIP AMPLIADO (Micro-Tarjeta Elegante) */
+.tech-tooltip {
+  position: absolute;
+  /* Posición inicial para la animación */
+  bottom: 100%; 
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  
+  width: 220px; /* Un poco más ancho para que respire */
+  background: #ffffff;
+  padding: 1rem; /* 16px de padding por todos lados */
+  border-radius: 12px;
+  
+  /* Borde sutil */
+  border: 1px solid var(--tech-color, #ddd);
+  border-top: 3px solid var(--tech-color, #ddd); /* Acento superior más fuerte */
+  
+  /* Sombra suave y elegante */
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.15);
+  
+  /* Propiedades de texto base */
+  text-align: left;
+  font-family: 'Inter', sans-serif; /* Fuente limpia para lectura */
+  color: #333333; /* Gris oscuro, no negro puro */
+  z-index: 1000;
+  
+  /* Estado inicial invisible */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  
+  /* Animación suave */
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Header del tooltip */
+.tooltip-header {
+  font-family: 'Poppins', sans-serif; /* Fuente con más carácter para títulos */
+  font-size: 16px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 8px; /* Separación con la lista */
+  padding-bottom: 6px;
+  border-bottom: 1px solid #f0f0f0;
+  letter-spacing: -0.02em;
+}
+
+/* Lista del tooltip */
+.tooltip-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 14px; /* Tamaño legible */
+  font-weight: 400; /* Peso regular */
+  color: #444;
+  line-height: 1.5; /* Buen interlineado */
+}
+
+.tooltip-list li {
+  display: flex;
+  align-items: flex-start; /* Alinear arriba por si el texto ocupa 2 líneas */
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.tooltip-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* Viñeta personalizada de color */
+.tooltip-list li::before {
+  content: '•';
+  color: var(--tech-color, #ccc); /* Color de la tecnología */
+  font-weight: bold;
+  font-size: 1.2em;
+  line-height: 1;
+  margin-top: -1px; /* Ajuste fino óptico */
+}
+
+/* La flechita (Pico) */
+.tech-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%; 
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px;
+  border-style: solid;
+  border-color: #ffffff transparent transparent transparent;
+  /* Filtro para que la flecha también tenga un poco de sombra (opcional/avanzado) */
+}
+
+/* Mostrar tooltip al hacer hover */
+.floating-tech:hover .tech-tooltip {
+  opacity: 1;
+  visibility: visible;
+  /* Subida suave: de translateY(10px) a -10px */
+  transform: translateX(-50%) translateY(-10px); 
+}
+

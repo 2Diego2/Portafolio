@@ -15,10 +15,13 @@
             // Cuando entra en pantalla
              // Agregamos la clase 'visible' que tiene el CSS final
             entrada.target.classList.add('visible');
-            } else {
+             // Dejar de observar una vez que ya es visible para evitar "rebotes"
+             observador.unobserve(entrada.target);
+            } 
+            /* else {
             // Cuando sale de pantalla
-            entrada.target.classList.remove('visible');
-            }
+            // entrada.target.classList.remove('visible');
+            } */
           // (Opcional) Dejamos de observar para que NO se anime de nuevo si subes y bajas
           //tendriamos que quitar el else 
           //observador.unobserve(entrada.target); 

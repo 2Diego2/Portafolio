@@ -10,8 +10,13 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/proyectos.css">
     <link rel="stylesheet" href="css/experiencia.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 
-
+    <link rel="stylesheet" href="css/navbar.css"> <!-- NUEVO ESTILO NAV -->
 </head>
 <body>
 
@@ -30,31 +35,110 @@
         <div class="scroll-indicator">↓</div>
     </section>
 
-    <header id="sticky-header" class="hidden">
-        <div class="brand">TU APELLIDO / DEV</div>
-        <nav>...</nav>
-    </header>
-
+    <!-- Header original refactorizado -->
+    <!-- Header original refactorizado - Dynamic Island -->
     <header class="header">
-    <a class="logo">[]</a>
-     <nav class="nav">
-    <a class="Stack">Stack / </a>
-    <a class="proyectos">Proyectos / </a>
-    <a class="Experiencia">Experiencia /</a>
-    <a class="boton-cv" href="assets/Cv.Diego.L.Abelleyra.pdf" download>CV</a>
-    </nav>
+        <nav class="nav" id="dynamic-nav">
+            <!-- Estado Cerrado: Label/Logo -->
+            <div class="nav-brand">Diego.dev</div>
+
+            <!-- Estado Abierto: Links -->
+            <div class="nav-content">
+                <a class="Stack" href="#tech-stack"><i class="fa-solid fa-code"></i> STACK</a> <!-- Icono ajustado -->
+                <a class="proyectos" href="#proyectos"><i class="fa-solid fa-briefcase"></i> PROYECTOS</a>
+                <a class="Experiencia" href="#experiencia"><i class="fa-solid fa-user-clock"></i> EXPERIENCIA</a>
+                <a class="boton-cv" href="assets/Cv.Diego.L.Abelleyra.pdf" download><i class="fa-solid fa-file-pdf"></i> CV</a>
+                
+                <!-- La Línea Mágica -->
+                <div class="indicador"></div>
+            </div>
+        </nav>
     </header>
 
     <section id="tech-stack" class="scene">
         <h2 class="section-title">EL ARSENAL</h2>
-        <div class="floating-tech"><img src="./assets/html-icon.png" alt="Html"></div>
-        <div class="floating-tech"><img src="./assets/css-icon.png" alt="Css"></div>
-        <div class="floating-tech"><img src="./assets/react-js-icon.png" alt="React"></div>
-        <div class="floating-tech"><img src="./assets/javascript.png" alt="Js"></div>
-        <div class="floating-tech"><img src="./assets/node-js-icon.png" alt="Node"></div>
-        <div class="floating-tech"><img src="./assets/mongodb-icon.png" alt="MongoDB"></div>
-        <div class="floating-tech"><img src="./assets/azure-sql-database-icon.png" alt="Sql"></div>
-        <div class="floating-tech"><img src="./assets/mysql-icon.png" alt="MySQL"></div>
+        <div class="floating-tech">
+            <img src="./assets/html-icon.png" alt="Html">
+            <span class="tech-tooltip" style="--tech-color: #E34F26;">
+                <div class="tooltip-header">HTML5</div>
+                <ul class="tooltip-list">
+                    <li>Código limpio y organizado.</li>
+                    <li>Maquetación estricta y ordenada.</li>
+                    <li>Accesibilidad web y SEO básico.</li>
+                </ul>
+            </span>
+        </div>
+        <div class="floating-tech">
+            <img src="./assets/css-icon.png" alt="Css">
+            <span class="tech-tooltip" style="--tech-color: #1572B6;">
+                <div class="tooltip-header">CSS3</div>
+                <ul class="tooltip-list">
+                    <li>Flexbox & Grid</li>
+                    <li>Animaciones</li>
+                    <li>Responsive</li>
+                </ul>
+            </span>
+        </div>
+        <div class="floating-tech">
+            <img src="./assets/react-js-icon.png" alt="React">
+            <span class="tech-tooltip" style="--tech-color: #61DAFB;">
+                <div class="tooltip-header">React</div>
+                <ul class="tooltip-list">
+                    <li>Gestión de estado y Rutas.</li>
+                    <li>Conexión asíncrona con APIs.</li>
+                </ul>
+            </span>
+        </div>
+        <div class="floating-tech">
+            <img src="./assets/javascript.png" alt="Js">
+            <span class="tech-tooltip" style="--tech-color: #F7DF1E;">
+                <div class="tooltip-header">JavaScript</div>
+                <ul class="tooltip-list">
+                    <li>Manejo de asincronía (Async/Await).</li>
+                    <li>Manipulación dinámica del DOM.</li>
+                </ul>
+            </span>
+        </div>
+        <div class="floating-tech">
+            <img src="./assets/node-js-icon.png" alt="Node">
+            <span class="tech-tooltip" style="--tech-color: #339933;">
+                <div class="tooltip-header">Node.js</div>
+                <ul class="tooltip-list">
+                    <li>REST APIs escalables con Express.</li>
+                </ul>
+            </span>
+        </div>
+        <div class="floating-tech">
+            <img src="./assets/mongodb-icon.png" alt="MongoDB">
+            <span class="tech-tooltip" style="--tech-color: #47A248;">
+                <div class="tooltip-header">MongoDB</div>
+                <ul class="tooltip-list">
+                    <li>NoSQL Schemas</li>
+                    <li>Agregaciones</li>
+                </ul>
+            </span>
+        </div>
+        <div class="floating-tech">
+            <img src="./assets/azure-sql-database-icon.png" alt="Sql">
+            <span class="tech-tooltip" style="--tech-color: #0078D4;">
+                <div class="tooltip-header">Azure SQL</div>
+                <ul class="tooltip-list">
+                    <li>Manejo del lenguaje SQL</li>
+                    <li>Consultas avanzadas</li>
+                    <li>Optimización</li>
+                </ul>
+            </span>
+        </div>
+        <div class="floating-tech">
+            <img src="./assets/mysql-icon.png" alt="MySQL">
+            <span class="tech-tooltip" style="--tech-color: #4479A1;">
+                <div class="tooltip-header">MySQL</div>
+                <ul class="tooltip-list">
+                    <li>Diseño de modelos relacionales (DER).</li>
+                    <li>Normalización de tablas.</li>
+                </ul>
+            </span>
+        </div>
     </section>
 
 
@@ -66,6 +150,7 @@
     <script src="js/header.js"></script>
     <script src="js/index.js"></script>
     <script src="js/proyectos.js"></script>
+    <script src="js/navbar.js"></script>
 
     <section id="experiencia" class="seccion-experiencia">
   <div class="contenedor-principal">
@@ -102,6 +187,7 @@
         <div class="contenido-tarjeta">
           <div class="encabezado-tarjeta">
             <h3 class="cargo-trabajo">Desarrollador Full Stack Trainee</h3>
+             <span class="tipo-trabajo"><i class="fa-solid fa-laptop-code"></i> <h4>Practicas Profesionales.</h4></span>
             <span class="empresa">
               <a href="https://crombie.dev/es/" target="_blank" rel="noopener noreferrer">
                 <img src="./assets/LogoCrombie.png" alt="Crombie">

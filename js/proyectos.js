@@ -368,7 +368,7 @@ function crearBarraFiltros() {
             <button class="filtro-btn" data-filtro="mongodb" onclick="filtrarProyectos('mongodb')">
                 <img src="./assets/mongodb-icon.png" alt="MongoDB"> MongoDB
             </button>
-             <button class="filtro-btn" data-filtro="postgresql " onclick="filtrarProyectos('postgresql')">
+            <button class="filtro-btn" data-filtro="postgresql" onclick="filtrarProyectos('postgresql')">
                 <img src="./assets/postgresql-icon.webp" alt="PostgreSQL"> PostgreSQL
             </button>
         </div>

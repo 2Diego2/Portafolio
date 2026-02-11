@@ -1,0 +1,173 @@
+/* ============ ESTILOS DEL MENÚ "DYNAMIC ISLAND" ============ */
+
+/* --- GENERAL --- */
+
+/* Contenedor invisible para centrar */
+.header {
+    position: fixed;
+    top: 20px; /* Margen superior */
+    width: 100%;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    pointer-events: none; /* Dejamos pasar clicks por los lados */
+}
+
+
+.nav {
+    /* "Isla" base */
+    pointer-events: auto; /* La isla sí recibe clicks */
+    background: rgba(15, 15, 15, 0.9); /* Casi negro, muy sólido */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50px; /* Redondo completo */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    
+    /* Dimensiones Dinámicas */
+    width: auto;
+    height: 50px; /* Altura inicial fija */
+    padding: 0 25px; /* Padding lateral inicial */
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Clave para ocultar contenido mientras crece */
+    
+    transition: 
+        width 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), /* Efecto rebote suave */
+        height 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        border-radius 0.5s ease,
+        padding 0.5s ease;
+    
+    cursor: pointer; /* Indica interactividad */
+}
+
+/* --- ESTADO CERRADO (Por defecto) --- */
+
+.nav-brand {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    white-space: nowrap;
+    opacity: 1;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    position: absolute; /* Absoluto para poder centrarlo y desvanecerlo */
+    pointer-events: none;
+}
+
+.nav-content {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    opacity: 0; /* Invisible inicialmente */
+    visibility: hidden;
+    transform: scale(0.9); /* Ligeramente más pequeño */
+    transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s; /* Delay para esperar expansión */
+}
+
+.nav-content a {
+    text-decoration: none;
+    color: #ccc;
+    font-weight: 500;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s;
+    white-space: nowrap; /* Evita roturas de línea */
+}
+
+.nav-content a:hover {
+    color: var(--accent-color, #61dafb);
+}
+
+/* --- ESTADO ABIERTO (Hover en Desktop / Clase en Mobile) --- */
+
+/* Desktop: Hover expande */
+@media (min-width: 1024px) {
+    .nav:hover {
+        padding: 0 40px; /* Más espacio al abrir */
+    }
+    
+    .nav:hover .nav-brand {
+        opacity: 0;
+        transform: scale(0.5); /* Se encoge y desaparece */
+    }
+
+    .nav:hover .nav-content {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+    }
+}
+
+/* Mobile: Activo por clase JS */
+.nav.active {
+    padding: 0 30px;
+}
+
+.nav.active .nav-brand {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+.nav.active .nav-content {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+/* --- INDICADOR (Línea Mágica) --- */
+.indicador {
+    position: absolute;
+    bottom: -5px; /* Fuera del content flow, ajustado */
+    left: 0;
+    height: 3px;
+    background: var(--accent-color, #61dafb);
+    border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Solo mostrar indicador si el contenido es visible */
+.nav:hover .indicador, .nav.active .indicador {
+    opacity: 1;
+}
+
+/* --- ADAPTACIÓN MÓVIL (< 1024px) --- */
+/* En tablets y móviles, el espacio horizontal es valioso.
+   Ajustamos el comportamiento */
+
+@media (max-width: 1024px) {
+    .nav {
+        flex-direction: column; /* Apilar verticalmente si es necesario */
+    }
+    
+    /* Cuando se abre en móvil, crecemos verticalmente si no cabe horizontal */
+    .nav.active {
+        /* height: auto; -> Dejaremos que JS o CSS calculen, o height fijo mayor */
+        border-radius: 30px;
+        padding: 20px;
+        width: 90vw; /* Ancho casi total */
+        max-width: 400px;
+    }
+    
+    .nav.active .nav-content {
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+    }
+    
+    .nav-content a {
+        font-size: 1.2rem;
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Ocultamos indicador en móvil vertical, usamos otro estilo o nada */
+    .indicador {
+        display: none !important; 
+    }
+}

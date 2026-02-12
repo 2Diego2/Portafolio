@@ -48,30 +48,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. LA LÍNEA MÁGICA (Solo Desktop/Horizontal)
     // ==========================================
 
+    // ==========================================
+    // 2. LA LÍNEA MÁGICA (Legacy - Reemplazada por CSS Laser Line)
+    // ==========================================
+
     function moverIndicador(elemento) {
-        // Solo si están visibles los links (nav expanded) y en modo horizontal
-        if (window.innerWidth <= 1024) return; 
-
-        // Offset relativo al contenedor .nav-content
-        // Pero el indicador está absoluto en .nav-content (revisar CSS)
-        // .nav-content display flex relative? -> .nav es flex. 
-        // El indicador está dentro de .nav-content.
-        
-        // Necesitamos la posición del enlace relativa a .nav-content
-        const contentRect = navContent.getBoundingClientRect();
-        const linkRect = elemento.getBoundingClientRect();
-
-        const left = linkRect.left - contentRect.left;
-        const width = linkRect.width;
-
-        indicador.style.width = `${width}px`;
-        indicador.style.transform = `translateX(${left}px)`; // Usar transform es más performante
-        // Nota: en CSS definimos left:0, usaremos transform.
-        indicador.style.left = '0'; 
-        indicador.style.opacity = '1';
+        return; // Deshabilitado: Usamos CSS ::after ahora
     }
 
-    // Eventos Mouseenter
+    // Eventos Mouseenter (Legacy - Mantener listeners no daña, pero vacíos)
     enlaces.forEach(enlace => {
         enlace.addEventListener('mouseenter', (e) => {
             moverIndicador(e.target);
@@ -80,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Reset al salir del content
     navContent.addEventListener('mouseleave', () => {
-        indicador.style.opacity = '0';
+        if(indicador) indicador.style.opacity = '0';
     });
 
 });

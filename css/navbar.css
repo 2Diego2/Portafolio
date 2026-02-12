@@ -1,98 +1,151 @@
-/* ============ ESTILOS DEL MENÚ "DYNAMIC ISLAND" ============ */
-
 /* --- GENERAL --- */
-
-/* Contenedor invisible para centrar */
 .header {
     position: fixed;
-    top: 20px; /* Margen superior */
+    top: 30px; /* Un poco más abajo para que respire */
     width: 100%;
-    z-index: 999;
+    z-index: 1000;
     display: flex;
     justify-content: center;
-    pointer-events: none; /* Dejamos pasar clicks por los lados */
+    pointer-events: none;
 }
 
-
 .nav {
-    /* "Isla" base */
-    pointer-events: auto; /* La isla sí recibe clicks */
-    background: rgba(15, 15, 15, 0.9); /* Casi negro, muy sólido */
+    pointer-events: auto;
+    
+    /* 1. FONDO: Oscuro y Profundo (Sin gris lavado) */
+    background: rgba(5, 5, 10, 0.6); 
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 50px; /* Redondo completo */
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
     
-    /* Dimensiones Dinámicas */
+    /* 2. BORDE: Extremadamente sutil y fino (Clase pura) */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 100px; /* Pill shape perfecta */
+    
+    /* 3. SOMBRA: Suave y difusa, solo para separar del fondo */
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+
+    /* Dimensiones y Transiciones */
     width: auto;
-    height: 50px; /* Altura inicial fija */
-    padding: 0 25px; /* Padding lateral inicial */
+    height: 54px; /* Altura cómoda */
+    padding: 0 6px; /* Padding interno para el "gap" */
     
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden; /* Clave para ocultar contenido mientras crece */
+    overflow: hidden;
     
-    transition: 
-        width 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), /* Efecto rebote suave */
-        height 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-        border-radius 0.5s ease,
-        padding 0.5s ease;
-    
-    cursor: pointer; /* Indica interactividad */
+    /* La magia de la fluidez */
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* --- ESTADO CERRADO (Por defecto) --- */
-
+/* --- ESTADO CERRADO (La Píldora) --- */
 .nav-brand {
-    color: #fff;
-    font-weight: 700;
-    font-size: 1rem;
-    white-space: nowrap;
-    opacity: 1;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    position: absolute; /* Absoluto para poder centrarlo y desvanecerlo */
+    color: #e2e8f0; /* Blanco hueso (menos agresivo que #fff) */
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    padding: 0 20px;
+    
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    
+    transition: opacity 0.2s ease, transform 0.3s ease;
+}
+
+.hint-icon {
+    font-size: 0.8rem;
+    color: #64ffda; /* El toque de color justo (Cian) */
+    opacity: 0.8;
+}
+
+/* --- ESTADO ABIERTO (Al hacer Hover) --- */
+.nav:hover {
+    padding: 0 30px; /* Se expande */
+    background: rgba(10, 10, 15, 0.85); /* Se oscurece un poco más */
+    border-color: rgba(255, 255, 255, 0.15); /* El borde se define más */
+    box-shadow: 0 15px 50px -10px rgba(0, 0, 0, 0.7);
+}
+
+.nav:hover .nav-brand {
+    opacity: 0;
+    transform: translateY(-10px);
     pointer-events: none;
 }
 
 .nav-content {
     display: flex;
     align-items: center;
-    gap: 30px;
-    opacity: 0; /* Invisible inicialmente */
+    gap: 5px; /* Espacio entre items */
+    
+    /* Oculto por defecto */
+    opacity: 0;
     visibility: hidden;
-    transform: scale(0.9); /* Ligeramente más pequeño */
-    transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s; /* Delay para esperar expansión */
+    transform: translateY(10px);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    transition-delay: 0.1s;
 }
 
+.nav:hover .nav-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* --- LOS ENLACES (Clean Style) --- */
 .nav-content a {
     text-decoration: none;
-    color: #ccc;
+    color: #94a3b8; /* Gris azulado elegante */
     font-weight: 500;
-    font-size: 0.95rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: color 0.3s;
-    white-space: nowrap; /* Evita roturas de línea */
+    font-size: 0.9rem;
+    padding: 8px 16px;
+    border-radius: 20px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* EL EFECTO FINAL: Texto blanco + "Rayo Láser" sutil abajo */
+.nav-content a::after {
+    content: '';
+    position: absolute;
+    bottom: 6px; /* Justo debajo del texto */
+    left: 50%;
+    transform: translateX(-50%) scaleX(0); /* Empieza invisible en el centro */
+    width: 20px; /* Cortito, no todo el ancho */
+    height: 2px;
+    background: #64ffda; /* Cian sólido */
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(100, 255, 218, 0.8); /* Pequeño brillo real */
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .nav-content a:hover {
-    color: var(--accent-color, #61dafb);
+    color: #ffffff; /* Blanco puro */
+    background: rgba(255, 255, 255, 0.03); /* Fondo casi imperceptible */
 }
 
-/* --- ESTADO ABIERTO (Hover en Desktop / Clase en Mobile) --- */
+.nav-content a:hover::after {
+    transform: translateX(-50%) scaleX(1); /* Se expande el láser */
+    width: 80%; /* Ocupa casi todo el ancho */
+}
 
-/* Desktop: Hover expande */
+/* --- ESTADO ABIERTO (Hover / Active) --- */
+
+/* Desktop Hover */
 @media (min-width: 1024px) {
     .nav:hover {
-        padding: 0 40px; /* Más espacio al abrir */
+        padding: 0 45px;
+        background: rgba(15, 15, 15, 0.85); /* Más sólido al abrir para leer mejor */
+        box-shadow: 
+            0 15px 50px rgba(0, 0, 0, 0.6),
+            0 0 0 1px rgba(97, 218, 251, 0.2); /* Borde azulado sutil al abrir */
+        animation-play-state: paused; /* Pausar flotación al interactuar */
     }
     
     .nav:hover .nav-brand {
         opacity: 0;
-        transform: scale(0.5); /* Se encoge y desaparece */
+        transform: scale(0.8) translateY(-10px);
     }
 
     .nav:hover .nav-content {
@@ -102,9 +155,11 @@
     }
 }
 
-/* Mobile: Activo por clase JS */
+/* Mobile Active */
 .nav.active {
     padding: 0 30px;
+    background: rgba(15, 15, 15, 0.95);
+    animation-play-state: paused;
 }
 
 .nav.active .nav-brand {
@@ -118,56 +173,71 @@
     transform: scale(1);
 }
 
-/* --- INDICADOR (Línea Mágica) --- */
+/* Desactivamos el viejo indicador deslizante si queda rastro */
 .indicador {
-    position: absolute;
-    bottom: -5px; /* Fuera del content flow, ajustado */
-    left: 0;
-    height: 3px;
-    background: var(--accent-color, #61dafb);
-    border-radius: 2px;
-    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    opacity: 0;
-    pointer-events: none;
+    display: none !important;
 }
 
-/* Solo mostrar indicador si el contenido es visible */
-.nav:hover .indicador, .nav.active .indicador {
-    opacity: 1;
+/* --- ANIMACIONES --- */
+
+/* 4. ANIMACIÓN "FLOTAR Y RESPIRAR" */
+@keyframes flotar-respirar {
+    0%, 100% {
+        transform: translateY(0);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+    50% {
+        transform: translateY(-3px); /* Flota un poco arriba */
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6); /* Sombra crece */
+        border-color: rgba(255, 255, 255, 0.15); /* Borde brilla un poco más */
+    }
 }
+
+/* Animación sutil para la flechita */
+@keyframes rebote-icono {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(2px); }
+}
+
 
 /* --- ADAPTACIÓN MÓVIL (< 1024px) --- */
-/* En tablets y móviles, el espacio horizontal es valioso.
-   Ajustamos el comportamiento */
-
 @media (max-width: 1024px) {
     .nav {
-        flex-direction: column; /* Apilar verticalmente si es necesario */
+        flex-direction: column; 
     }
     
-    /* Cuando se abre en móvil, crecemos verticalmente si no cabe horizontal */
     .nav.active {
-        /* height: auto; -> Dejaremos que JS o CSS calculen, o height fijo mayor */
         border-radius: 30px;
-        padding: 20px;
-        width: 90vw; /* Ancho casi total */
+        padding: 30px 20px;
+        width: 90vw;
         max-width: 400px;
+        height: auto;
     }
     
     .nav.active .nav-content {
         flex-direction: column;
-        gap: 20px;
+        gap: 25px;
         width: 100%;
+        margin-top: 10px;
     }
     
     .nav-content a {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         width: 100%;
         justify-content: center;
+        padding: 10px;
+        border-radius: 12px;
     }
 
-    /* Ocultamos indicador en móvil vertical, usamos otro estilo o nada */
+    .nav-content a:active {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
     .indicador {
         display: none !important; 
     }
+    
+    /* En móvil, el icono rota al estar activo si quisieramos, 
+       pero el brand desaparece, así que no se ve. */
 }

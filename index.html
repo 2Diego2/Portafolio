@@ -17,22 +17,54 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/navbar.css"> <!-- NUEVO ESTILO NAV -->
+    <link rel="stylesheet" href="css/hero.css">   <!-- NUEVO ESTILO HERO -->
 </head>
 <body>
 
-    <section id="hero" class="scene full-screen">
-    
-        <h1 class="hero-title">HOLA.<br>Diego.</h1>
-        <p class="hero-subtitle">Estudiante y Desarrollador Full Stack.</p>
-        <div class="descargar-cv">
-            <button href="assets/Cv.Diego.L.Abelleyra.pdf" download>Descargar CV</button>
+    <!-- HERO SECTION REDESIGN -->
+    <section id="hero">
+        <!-- Fondo Aurora -->
+        <div class="hero-background">
+            <div class="aurora-blob blob-1"></div>
+            <div class="aurora-blob blob-2"></div>
         </div>
-        <div class="contacto">
-        <i class="fa-brands fa-linkedin"></i>
-        <i class="fa-brands fa-github-alt"></i>
-        <i class="fa-solid fa-at"></i>
+
+        <div class="hero-container">
+            <!-- Columna Izquierda: Texto -->
+            <div class="hero-text">
+                <h2 class="hero-subtitle">HOLA. Soy <span class="nombre-destacado">Diego.</span></h2>
+                
+                <h1 class="hero-title-main">
+                    FULL STACK
+                    <span class="highlight">DEVELOPER</span>
+                </h1>
+
+                <div class="hero-code-snippet">
+                    <span style="color: #c678dd">const</span> <span style="color: #e5c07b">dev</span> = <span style="color: #98c379">'Diego'</span>;
+                </div>
+
+                <div class="hero-cta">
+                    <a href="assets/Cv.Diego.L.Abelleyra.pdf" download class="btn-primary">
+                        <i class="fa-solid fa-download"></i> Descargar CV
+                    </a>
+                    <a href="#contacto" class="btn-secondary">
+                        <i class="fa-solid fa-envelope"></i> Contacto
+                    </a>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Visual -->
+            <div class="hero-visual">
+                <div class="sticker-aura"></div>
+                <!-- Elementos Decorativos -->
+                <div class="visual-deco deco-circle"></div>
+                <div class="visual-deco deco-cross">+</div>
+
+                <img src="assets/Sticker_mio2.png" alt="Diego Sticker Avatar" class="hero-sticker-img">
+            </div>
         </div>
-        <div class="scroll-indicator">↓</div>
+        
+        <!-- Indicador Scroll (Mantenido o rediseñado, opcional, por ahora lo quito para limpiar) -->
     </section>
 
     <!-- Header original refactorizado -->
@@ -46,6 +78,7 @@
 
             <!-- Estado Abierto: Links -->
             <div class="nav-content">
+                <a class="yo" href="#yo"><i class="fa-solid fa-code"></i> CONOCEME</a>
                 <a class="Stack" href="#tech-stack"><i class="fa-solid fa-code"></i> STACK</a> <!-- Icono ajustado -->
                 <a class="proyectos" href="#proyectos"><i class="fa-solid fa-briefcase"></i> PROYECTOS</a>
                 <a class="Experiencia" href="#experiencia"><i class="fa-solid fa-user-clock"></i> EXPERIENCIA</a>

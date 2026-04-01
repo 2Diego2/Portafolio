@@ -1,0 +1,319 @@
+/* ============ HERO SECTION REDESIGN (Tech/Aurora) ============ */
+
+/* --- VARIABLES PROPIAS DEL HERO --- */
+:root {
+    --hero-bg: #0a0a0a;
+    --hero-text-main: #ffffff;
+    --hero-text-muted: #8892b0;
+    --hero-accent-cyan: #61dafb;
+    --hero-accent-purple: #9b59b6;
+    --hero-code-color: #f8c555; /* Color amarillento para strings JS */
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+#hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--hero-bg);
+    overflow: hidden; /* Para que la aurora no desborde */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 5% 50px; /* Padding top para librar el navbar fijo */
+    z-index: 1;
+}
+
+/* --- FONDO ANIMADO (Aurora Borealis) --- */
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Detrás de todo */
+    background: radial-gradient(circle at 10% 10%, rgba(97, 218, 251, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(155, 89, 182, 0.05) 0%, transparent 40%);
+}
+
+.aurora-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px); /* Desenfoque extremo */
+    opacity: 0.4;
+    animation: aurora-float 10s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+    width: 500px;
+    height: 500px;
+    background: var(--hero-accent-cyan);
+    top: -10%;
+    right: -10%;
+    animation-delay: 0s;
+}
+
+.blob-2 {
+    width: 600px;
+    height: 600px;
+    background: var(--hero-accent-purple);
+    bottom: -10%;
+    left: -10%;
+    animation-delay: -5s;
+}
+
+/* --- LAYOUT GRID/FLEX --- */
+.hero-container {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; /* Texto más ancho que imagen en desktop */
+    align-items: center;
+    gap: 50px;
+    max-width: 1200px;
+    width: 100%;
+    position: relative;
+}
+
+/* --- COLUMNA IZQUIERDA: TEXTO --- */
+.hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 2;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--hero-text-muted);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    opacity: 0;
+    animation: fade-in-up 0.8s ease-out 0.2s forwards;
+}
+
+.hero-subtitle span {
+    color: var(--hero-text-main);
+}
+
+.hero-title-main {
+    font-size: clamp(3rem, 5vw, 5.5rem); /* Gigante y responsivo */
+    line-height: 0.95;
+    font-weight: 800;
+    color: var(--hero-text-main);
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    letter-spacing: -2px;
+    opacity: 0;
+    animation: fade-in-up 0.8s ease-out 0.4s forwards;
+}
+
+.hero-title-main .highlight {
+    color: transparent;
+    -webkit-text-stroke: 2px var(--hero-accent-cyan); /* Efecto Outline */
+    display: block; /* Forzar salto de línea visual si es necesario */
+}
+
+/* Decoración de Código */
+.hero-code-snippet {
+    font-family: 'Fira Code', monospace; /* O monospace default */
+    font-size: 1.1rem;
+    color: var(--hero-code-color);
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 3px solid var(--hero-accent-cyan);
+    border-radius: 0 8px 8px 0;
+    width: fit-content;
+    opacity: 0;
+    animation: fade-in-up 0.8s ease-out 0.6s forwards;
+    position: relative;
+}
+
+.hero-code-snippet::before {
+    content: '// Developer Profile';
+    display: block;
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+/* Botones / CTA */
+.hero-cta {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+    opacity: 0;
+    animation: fade-in-up 0.8s ease-out 0.8s forwards;
+}
+
+.btn-primary {
+    padding: 12px 30px;
+    background: white;
+    color: black;
+    font-weight: 700;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary {
+    padding: 12px 30px;
+    background: transparent;
+    color: white;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
+}
+
+
+/* --- COLUMNA DERECHA: VISUAL (Sticker) --- */
+.hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    opacity: 0;
+    animation: fade-in 1s ease-out 0.5s forwards;
+}
+
+/* El Aura detrás del sticker */
+.sticker-aura {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(97,218,251,0.4) 0%, rgba(155,89,182,0.2) 60%, transparent 80%);
+    filter: blur(40px);
+    border-radius: 50%;
+    z-index: -1;
+    animation: pulse-aura 4s infinite alternate;
+}
+
+/* La Imagen Sticker */
+.hero-sticker-img {
+    width: 100%;
+    max-width: 400px; /* Ajustar según tamaño real del PNG */
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); /* Sombra para despegarlo del fondo */
+    transform-origin: center center;
+    animation: float-sticker 6s ease-in-out infinite;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hero-sticker-img:hover {
+    transform: scale(1.05) rotate(2deg); /* Pequeño pop al hover */
+}
+
+/* Decoraciones Flotantes (Líneas, Puntos) */
+.visual-deco {
+    position: absolute;
+    pointer-events: none;
+}
+
+.deco-circle {
+    width: 15px;
+    height: 15px;
+    border: 2px solid var(--hero-accent-cyan);
+    border-radius: 50%;
+    top: 10%;
+    right: 10%;
+    animation: float-particle 4s infinite reverse;
+}
+
+.deco-cross {
+    font-size: 2rem;
+    color: var(--hero-accent-purple);
+    bottom: 20%;
+    left: 0;
+    animation: spin-slow 10s linear infinite;
+}
+
+
+/* --- ANIMACIONES KEYFRAMES --- */
+@keyframes aurora-float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, -30px) scale(1.1); }
+}
+
+@keyframes float-sticker {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+@keyframes pulse-aura {
+    0% { transform: scale(1); opacity: 0.4; }
+    100% { transform: scale(1.1); opacity: 0.6; }
+}
+
+@keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes spin-slow {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes float-particle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 900px) {
+    #hero {
+        padding-top: 100px;
+        text-align: center;
+        height: auto; /* Dejar crecer si es necesario */
+        min-height: 100vh;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr; /* Stackear */
+        gap: 40px;
+    }
+
+    .hero-text {
+        align-items: center; /* Centrar textos */
+        order: 1; /* Texto abajo en diseño visual? O arriba? Usualmente arriba en mobile también */
+    }
+
+    .hero-visual {
+        order: 0; /* Sticker arriba o entre texto? Probemos normal (texto arriba) */
+    }
+
+    .hero-title-main {
+        font-size: 3rem; /* Más pequeño */
+    }
+    
+    .sticker-aura {
+        width: 250px;
+        height: 250px;
+    }
+
+    .hero-sticker-img {
+        max-width: 280px;
+    }
+    
+    .blob-1, .blob-2 {
+        opacity: 0.3; /* Menos obtrusivo en móvil */
+    }
+}

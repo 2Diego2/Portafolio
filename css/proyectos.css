@@ -684,18 +684,38 @@
 
 /* ============ RESPONSIVE ============ */
 @media (max-width: 768px) {
+  #proyectos {
+    overflow: hidden; /* Prevenir scroll horizontal */
+    padding: 60px 0;
+  }
+
   .contenedor-proyectos {
     grid-template-columns: 1fr;
     padding: 30px 15px;
+    gap: 20px;
   }
   
+  /* Filtros: scroll horizontal si no caben */
   .filtros-container {
     gap: 10px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 15px 10px;
+    justify-content: flex-start;
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .filtros-container::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
   }
   
   .filtro-btn {
     padding: 10px 18px;
     font-size: 0.85rem;
+    min-height: 44px;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
   
   .tarjeta-proyecto {

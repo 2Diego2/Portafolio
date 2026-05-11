@@ -1,12 +1,15 @@
 /* --- GENERAL --- */
 .header {
     position: fixed;
-    top: 30px; /* Un poco más abajo para que respire */
+    top: 30px;
     width: 100%;
+    max-width: 100vw; /* Evitar desborde */
+    box-sizing: border-box;
     z-index: 1000;
     display: flex;
     justify-content: center;
     pointer-events: none;
+    left: 0;
 }
 
 .nav {

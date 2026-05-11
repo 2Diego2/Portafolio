@@ -12,6 +12,7 @@
     justify-content: center;
     text-align: center;
     z-index: 1;
+    overflow-x: hidden;
 }
 
 .contacto-contenido {

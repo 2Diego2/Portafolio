@@ -3,6 +3,8 @@
   background-color: transparent;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #fff;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .contenedor-principal {

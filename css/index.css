@@ -1,35 +1,4 @@
-/* Style the header with a grey background and some padding */
-.header {
-
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box  ;
-  display: flex;
-justify-content: space-around ;
-align-items: center;
-padding: 15px;
-position: sticky;
-top: 0;
-z-index: 10;
-      
-      opacity: 0;                   /* Invisible */
-      transition: all 0.9s ease-out; /* La animación durará 0.8 segundos */
-}
-.nav {
-display: flex;
-gap: 20px;
-}
-
-
-/* ESTADO FINAL (Cuando el JS agrega esta clase) */
- .header.visibl {
-      opacity: 1;                /* Totalmente visible */
-      transform: translateY(0);  /* Vuelve a su posición original */
- }
-
-
-
-
+/* ============ ESTILOS DE SECCIÓN DE TECNOLOGÍAS ============ */
 
 
 
@@ -44,6 +13,8 @@ gap: 20px;
   align-items: center;
   justify-content: center;
   padding: 100px 50px;
+  overflow: hidden; /* Prevenir desborde de iconos dispersos */
+  box-sizing: border-box;
 }
 
 /* ESTADO INICIAL: Todos los iconos en el centro, invisibles */
@@ -516,6 +487,7 @@ gap: 20px;
     align-items: center;
     justify-content: center;
     gap: 20px;
+    overflow: hidden; /* Prevenir overflow de tooltips */
   }
 
   .section-title {
@@ -590,11 +562,12 @@ gap: 20px;
     opacity: 1;
   }
 
-  /* Tooltip en mobile: posicionar debajo del icono */
+  /* Tooltip en mobile: OCULTO por defecto, solo visible con .tooltip-activo */
   .tech-tooltip,
   .floating-tech:nth-of-type(1) .tech-tooltip,
   .floating-tech:nth-of-type(2) .tech-tooltip,
   .floating-tech:nth-of-type(3) .tech-tooltip {
+    display: none; /* Oculto por defecto en mobile */
     bottom: auto;
     top: calc(100% + 8px);
     left: 50%;
@@ -617,22 +590,29 @@ gap: 20px;
     border-color: transparent transparent #ffffff transparent;
   }
 
-  /* Mostrar tooltip al tap (clase .tooltip-activo agregada por JS) */
+  /* Solo mostrar tooltip al tap (clase .tooltip-activo del JS) */
   .floating-tech.tooltip-activo .tech-tooltip {
+    display: block;
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
   }
 
-  .floating-tech:hover .tech-tooltip {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-  }
-
+  /* Deshabilitar TODOS los hover en tooltips mobile */
+  .floating-tech:hover .tech-tooltip,
   .floating-tech:nth-of-type(1):hover .tech-tooltip,
   .floating-tech:nth-of-type(2):hover .tech-tooltip,
   .floating-tech:nth-of-type(3):hover .tech-tooltip {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  /* Pero si tiene .tooltip-activo, mostrarlo aunque tenga hover */
+  .floating-tech.tooltip-activo:hover .tech-tooltip {
+    display: block;
+    opacity: 1;
+    visibility: visible;
     transform: translateX(-50%) translateY(0);
   }
 }

@@ -19,8 +19,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 120px 5% 50px; /* Padding top para librar el navbar fijo */
+    padding: 120px 5% 50px;
     z-index: 1;
+    box-sizing: border-box;
+    overflow: hidden; /* Prevenir desborde horizontal */
 }
 
 /* --- FONDO ANIMADO GLOBAL (Aurora Borealis) --- */
@@ -123,17 +125,20 @@
 
 /* Decoración de Código */
 .hero-code-snippet {
-    font-family: 'Fira Code', monospace; /* O monospace default */
+    font-family: 'Fira Code', monospace;
     font-size: 1.1rem;
     color: var(--hero-code-color);
     margin-top: 20px;
     padding: 10px 20px;
     background: rgba(255, 255, 255, 0.05);
-    border-radius: 0 8px 8px 0;
-    width: fit-content;
+    border-radius: 8px;
+    width: 100%; /* Siempre 100% para evitar desborde */
+    box-sizing: border-box;
     opacity: 0;
     animation: fade-in-up 0.8s ease-out 0.6s forwards;
     position: relative;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 

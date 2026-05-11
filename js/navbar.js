@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const nav = document.getElementById('dynamic-nav');
     const navContent = document.querySelector('.nav-content');
+    const navBrand = document.querySelector('.nav-brand');
     const enlaces = document.querySelectorAll('.nav-content a');
     const indicador = document.querySelector('.indicador');
 
@@ -9,32 +10,34 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. LÓGICA DE EXPANSIÓN (Click / Toggle)
     // ==========================================
     
-    function toggleNav(e) {
-        // En desktop, el hover ya lo maneja CSS, pero si hacen click, 
-        // podríamos querer dejarlo fijo o no. Por ahora, confiamos en CSS hover para Desktop
-        // y Click para Mobile.
-        
-        // Detectar si es touch o pantalla pequeña
+    function toggleNav() {
         if (window.innerWidth <= 1024) {
-            // Prevenir que el click en un enlace cierre inmediatamente el menú si queremos navegar
-            // Pero si es un enlace, el navegador navegará.
-            // Solo toggles si clican el contenedor vacío o el brand.
-            
             nav.classList.toggle('active');
         }
     }
 
+    // Click en el nav (funciona en desktop y la mayoría de móviles)
     nav.addEventListener('click', (e) => {
-        // Si clickean en un enlace, no hacemos toggle (dejamos que navegue y luego cerramos)
+        // Si clickean en un enlace, navegar y cerrar
         if (e.target.closest('a')) {
-            // Pequeño delay para que se vea el click antes de cerrar/navegar
             setTimeout(() => {
                 nav.classList.remove('active');
             }, 300);
             return;
         }
-        toggleNav(e);
+        // Si clickean en el brand o el nav vacío, toggle
+        if (e.target.closest('.nav-brand') || e.target === nav) {
+            toggleNav();
+        }
     });
+
+    // Listener directo en nav-brand para iOS (fallback)
+    if (navBrand) {
+        navBrand.addEventListener('touchend', (e) => {
+            e.preventDefault(); // Prevenir doble-fire con click
+            toggleNav();
+        });
+    }
 
     // Cerrar al hacer click fuera
     document.addEventListener('click', (e) => {

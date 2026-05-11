@@ -562,20 +562,23 @@
     opacity: 1;
   }
 
-  /* Tooltip en mobile: OCULTO por defecto, solo visible con .tooltip-activo */
+  /* Tooltip en mobile: OCULTO por defecto */
   .tech-tooltip,
   .floating-tech:nth-of-type(1) .tech-tooltip,
   .floating-tech:nth-of-type(2) .tech-tooltip,
   .floating-tech:nth-of-type(3) .tech-tooltip {
-    display: none; /* Oculto por defecto en mobile */
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none;
     bottom: auto;
-    top: calc(100% + 8px);
+    top: calc(100% + 10px);
     left: 50%;
-    transform: translateX(-50%) translateY(-5px);
+    transform: translateX(-50%) translateY(5px);
     width: 180px;
     padding: 0.7rem;
     font-size: 12px;
     z-index: 1000;
+    transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
   }
 
   /* Tooltip arrow siempre arriba */
@@ -590,29 +593,20 @@
     border-color: transparent transparent #ffffff transparent;
   }
 
-  /* Solo mostrar tooltip al tap (clase .tooltip-activo del JS) */
-  .floating-tech.tooltip-activo .tech-tooltip {
-    display: block;
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-  }
-
-  /* Deshabilitar TODOS los hover en tooltips mobile */
+  /* Deshabilitar TODOS los hover en tooltips en mobile */
   .floating-tech:hover .tech-tooltip,
   .floating-tech:nth-of-type(1):hover .tech-tooltip,
   .floating-tech:nth-of-type(2):hover .tech-tooltip,
   .floating-tech:nth-of-type(3):hover .tech-tooltip {
-    display: none;
-    opacity: 0;
-    visibility: hidden;
+    opacity: 0 !important;
+    visibility: hidden !important;
   }
 
-  /* Pero si tiene .tooltip-activo, mostrarlo aunque tenga hover */
-  .floating-tech.tooltip-activo:hover .tech-tooltip {
-    display: block;
-    opacity: 1;
-    visibility: visible;
+  /* ÚNICO modo de mostrar tooltip en mobile: clase .tooltip-activo del JS */
+  .floating-tech.tooltip-activo > .tech-tooltip {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto;
     transform: translateX(-50%) translateY(0);
   }
 }
@@ -650,11 +644,11 @@
   }
 }
 
-/* Touch devices: Usar tap en vez de hover para tooltips */
+/* Touch devices: Deshabilitar hover y usar solo .tooltip-activo */
 @media (hover: none) {
   .floating-tech:hover .tech-tooltip {
-    opacity: 0;
-    visibility: hidden;
+    opacity: 0 !important;
+    visibility: hidden !important;
   }
 
   .floating-tech:hover {
@@ -669,9 +663,10 @@
     z-index: 100;
   }
 
-  .floating-tech.tooltip-activo .tech-tooltip {
-    opacity: 1;
-    visibility: visible;
+  .floating-tech.tooltip-activo > .tech-tooltip {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto;
     transform: translateX(-50%) translateY(0);
   }
 

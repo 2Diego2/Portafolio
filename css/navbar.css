@@ -15,35 +15,39 @@
 .nav {
     pointer-events: auto;
     
-    /* 1. FONDO: Oscuro y Profundo (Sin gris lavado) */
+    /* 1. FONDO */
     background: rgba(5, 5, 10, 0.6); 
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     
-    /* 2. BORDE: Extremadamente sutil y fino (Clase pura) */
+    /* 2. BORDE */
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 100px; /* Pill shape perfecta */
+    border-radius: 100px;
     
-    /* 3. SOMBRA: Suave y difusa, solo para separar del fondo */
+    /* 3. SOMBRA */
     box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
 
-    /* Dimensiones y Transiciones */
+    /* Dimensiones */
     width: auto;
-    height: 54px; /* Altura cómoda */
-    padding: 0 6px; /* Padding interno para el "gap" */
+    height: 54px;
+    padding: 0 6px;
     
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow: visible; /* NO hidden — causa problemas en iOS con el menú abierto */
     
-    /* La magia de la fluidez */
+    /* Touch */
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    
+    /* Transiciones */
     transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 /* --- ESTADO CERRADO (La Píldora) --- */
 .nav-brand {
-    color: #e2e8f0; /* Blanco hueso (menos agresivo que #fff) */
+    color: #e2e8f0;
     font-weight: 600;
     font-size: 0.9rem;
     letter-spacing: 0.5px;
@@ -53,6 +57,10 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    
+    pointer-events: auto;
+    touch-action: manipulation; /* Taps rápidos en iOS */
+    cursor: pointer;
     
     transition: opacity 0.2s ease, transform 0.3s ease;
 }

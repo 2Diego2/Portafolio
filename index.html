@@ -10,45 +10,73 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/proyectos.css">
     <link rel="stylesheet" href="css/experiencia.css">
+    <link rel="stylesheet" href="css/contacto.css">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;800&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/navbar.css"> <!-- NUEVO ESTILO NAV -->
     <link rel="stylesheet" href="css/hero.css">   <!-- NUEVO ESTILO HERO -->
 </head>
 <body>
 
-    <!-- HERO SECTION REDESIGN -->
-    <section id="hero">
-        <!-- Fondo Aurora -->
-        <div class="hero-background">
-            <div class="aurora-blob blob-1"></div>
-            <div class="aurora-blob blob-2"></div>
-        </div>
+    <!-- FONDO AURORAS GLOBAL (Sin interrupciones visuales de capas Transform) -->
+    <div class="fondo-auroras-globales">
+        <!-- Hero Auroras -->
+        <div class="aurora-blob blob-hero-1" style="top: 2%; left: -5%;"></div>
+        <div class="aurora-blob blob-hero-2" style="top: 8%; right: -5%;"></div>
 
+        <!-- Stack Auroras -->
+        <div class="aurora-blob blob-stack-1" style="top: 25%; left: -5%;"></div>
+        <div class="aurora-blob blob-stack-2" style="top: 35%; right: -5%;"></div>
+
+        <!-- Proyectos Auroras -->
+        <div class="aurora-blob blob-proj-1" style="top: 55%; right: -5%;"></div>
+        <div class="aurora-blob blob-proj-2" style="top: 65%; left: -5%;"></div>
+
+        <!-- Experiencia Auroras -->
+        <div class="aurora-blob blob-exp-1" style="top: 85%; left: -5%;"></div>
+        <div class="aurora-blob blob-exp-2" style="top: 95%; right: -5%;"></div>
+
+        <!-- Contacto Auroras -->
+        <div class="aurora-blob blob-contacto-1" style="top: 92%; left: 10%;"></div>
+        <div class="aurora-blob blob-contacto-2" style="top: 98%; right: 10%;"></div>
+    </div>
+
+    <!-- HERO SECTION REDESIGN -->
+    <section id="hero" class="seccion-relativa">
         <div class="hero-container">
             <!-- Columna Izquierda: Texto -->
             <div class="hero-text">
-                <h2 class="hero-subtitle">HOLA. Soy <span class="nombre-destacado">Diego.</span></h2>
+                <h2 class="hero-subtitle">Bienvenido/a.<br>
+                Soy <span class="nombre-destacado">Diego :)</span></h2>
+
+                <h1 class="hero-title-main" id="hero-title-main"></h1>
                 
-                <h1 class="hero-title-main">
-                    FULL STACK
-                    <span class="highlight">DEVELOPER</span>
-                </h1>
+                <div class="hero-subtitulo-carrera">
+                    <h4>* A tan solo 3 materias de ser <br>Técnico Superior en Desarrollo de Software ;)</h4>
+                </div>
 
                 <div class="hero-code-snippet">
-                    <span style="color: #c678dd">const</span> <span style="color: #e5c07b">dev</span> = <span style="color: #98c379">'Diego'</span>;
+<span style="color: #94a3b8; line-height: 1.6;">
+    Desarrollador dando mis primeros pasos profesionales. Me apasiona el ciclo completo de desarrollo: desde el diseño de interfaces claras hasta la estructuración de bases de datos y el despliegue de la aplicación. Hoy divido mi tiempo entre el terciario, el trabajo y la creación de productos a medida, buscando un equipo donde pueda sumar valor desde el primer día.
+</span>                
                 </div>
 
                 <div class="hero-cta">
                     <a href="assets/Cv.Diego.L.Abelleyra.pdf" download class="btn-primary">
                         <i class="fa-solid fa-download"></i> Descargar CV
                     </a>
-                    <a href="#contacto" class="btn-secondary">
-                        <i class="fa-solid fa-envelope"></i> Contacto
+                    <a href="https://www.linkedin.com/in/diego-lautaro-abelleyra-892735244" class="btn-secondary" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-linkedin"></i> Linkedin
+                    </a>
+                    <a href="mailto:diegoabelleyra74@gmail.com" class="btn-secondary">
+                        <i class="fa-solid fa-at"></i> Gmail
+                    </a>
+                    <a href="https://github.com/2Diego2" class="btn-secondary" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-github"></i> Github
                     </a>
                 </div>
             </div>
@@ -71,6 +99,7 @@
     <!-- Header original refactorizado - Dynamic Island -->
     <header class="header">
         <nav class="nav" id="dynamic-nav">
+            
             <!-- Estado Cerrado: Label/Logo -->
             <div class="nav-brand">
                 Diego.dev <i class="fa-solid fa-chevron-down hint-icon"></i>
@@ -78,10 +107,11 @@
 
             <!-- Estado Abierto: Links -->
             <div class="nav-content">
-                <a class="yo" href="#yo"><i class="fa-solid fa-code"></i> CONOCEME</a>
+                <a class="yo" href="#hero"><i class="fa-solid fa-code"></i> CONOCEME</a>
                 <a class="Stack" href="#tech-stack"><i class="fa-solid fa-code"></i> STACK</a> <!-- Icono ajustado -->
                 <a class="proyectos" href="#proyectos"><i class="fa-solid fa-briefcase"></i> PROYECTOS</a>
                 <a class="Experiencia" href="#experiencia"><i class="fa-solid fa-user-clock"></i> EXPERIENCIA</a>
+                <a class="Contacto" href="#contacto"><i class="fa-solid fa-envelope"></i> CONTACTO</a>
                 <a class="boton-cv" href="assets/Cv.Diego.L.Abelleyra.pdf" download><i class="fa-solid fa-file-pdf"></i> CV</a>
                 
                 <!-- La Línea Mágica -->
@@ -90,7 +120,7 @@
         </nav>
     </header>
 
-    <section id="tech-stack" class="scene">
+    <section id="tech-stack" class="scene seccion-relativa">
         <h2 class="section-title">EL ARSENAL</h2>
         <div class="floating-tech">
             <img src="./assets/html-icon.png" alt="Html">
@@ -156,7 +186,7 @@
         <div class="floating-tech">
             <img src="./assets/azure-sql-database-icon.png" alt="Sql">
             <span class="tech-tooltip" style="--tech-color: #0078D4;">
-                <div class="tooltip-header">Azure SQL</div>
+                <div class="tooltip-header">SQL</div>
                 <ul class="tooltip-list">
                     <li>Manejo del lenguaje SQL</li>
                     <li>Consultas avanzadas</li>
@@ -178,7 +208,7 @@
 
 
 
-      <section id="proyectos" class="scene">
+      <section id="proyectos" class="scene seccion-relativa">
         <h2 class="section-title">MIS PROYECTOS</h2>
         <div class="contenedor-proyectos" id="contenedorProyectos"></div>
     </section>
@@ -187,7 +217,7 @@
     <script src="js/proyectos.js"></script>
     <script src="js/navbar.js"></script>
 
-    <section id="experiencia" class="seccion-experiencia">
+    <section id="experiencia" class="seccion-experiencia seccion-relativa">
   <div class="contenedor-principal">
     
     <h2 class="titulo-seccion">
@@ -199,22 +229,27 @@
       <div class="item-experiencia">
         <div class="contenido-tarjeta">
           <div class="encabezado-tarjeta">
-            <h3 class="cargo-trabajo">Freelancer</h3>
+            <h3 class="cargo-trabajo">Desarrollador - Freelancer</h3>
             <span class="fecha">
               <i class="fa-regular fa-calendar-days"></i> Enero 2026 - Presente
             </span>
           </div>
           <p class="descripcion-trabajo">
-            Liderazgo en el relevamiento de requerimientos y documentación técnica.
-            Colaboración directa con el cliente para asegurar la calidad del producto.
+            Creación de productos digitales personalizados. Acompañamiento integral al cliente, desde el relevamiento y la documentación técnica hasta la entrega del producto final.
           </p>
-          <!-- 
+          
          
           <ul class="lista-tecnologias">
+            <li><i class="fa-brands fa-js"></i> JavaScript</li>
+            <li><i class="fa-brands fa-react"></i> React</li>
+            <li><i class="fa-brands fa-node"></i> Node.js</li>
+            <li><i class="fa-brands fa-html5"></i> HTML</li>
+            <li><i class="fa-brands fa-css3"></i> CSS</li>
+            <li><i class="fa-solid fa-database"></i> MongoDB</li>
             <li><i class="fa-solid fa-code"></i> SQL</li>
             <li><i class="fa-solid fa-sitemap"></i> UML</li>
-            <li><i class="fa-brands fa-jira"></i> Jira</li>
-          </ul> -->
+            <li><i class="fa-brands fa-slack"></i> Slack</li>
+          </ul> 
         </div>
       </div>
 
@@ -222,7 +257,9 @@
         <div class="contenido-tarjeta">
           <div class="encabezado-tarjeta">
             <h3 class="cargo-trabajo">Desarrollador Full Stack Trainee</h3>
-             <span class="tipo-trabajo"><i class="fa-solid fa-laptop-code"></i> <h4>Practicas Profesionales.</h4></span>
+            <span class="tipo-trabajo">
+              <i class="fa-solid fa-laptop-code"></i> Prácticas profesionalizantes.
+            </span>
             <span class="empresa">
               <a href="https://crombie.dev/es/" target="_blank" rel="noopener noreferrer">
                 <img src="./assets/LogoCrombie.png" alt="Crombie">
@@ -233,7 +270,7 @@
             </span>
           </div>
           <p class="descripcion-trabajo">
-           Participé activamente en el diseño y desarrollo de dos proyectos full-stack, desde la
+            Participé activamente en el diseño y desarrollo de aplicaciones full-stack como "Crombieversario" y "Crombie Juegos", desde la
             conceptualización hasta la implementación de funcionalidades clave.
           </p>
           <ul class="lista-tecnologias">
@@ -244,7 +281,8 @@
             <li><i class="fa-brands fa-css3"></i> CSS</li>
             <li><i class="fa-brands fa-aws"></i> AWS</li>
             <li><i class="fa-solid fa-database"></i> MongoDB</li>
-
+            <li><i class="fa-solid fa-sitemap"></i> UML</li>
+            <li><i class="fa-brands fa-slack"></i> Slack</li>
           </ul>
         </div>
       </div>
@@ -252,5 +290,63 @@
     </div>
   </div>
 </section>
+
+    <!-- ============ SECCIÓN CONTACTO ============ -->
+    <section id="contacto" class="seccion-relativa">
+        <div class="contacto-contenido">
+
+            <!-- ① Eyebrow -->
+            <span class="contacto-eyebrow">¿Listo/a para construir algo?</span>
+
+            <!-- ② Título -->
+            <h2 class="contacto-titulo">Trabajemos juntos.</h2>
+
+            <!-- ③ Subtítulo -->
+            <p class="contacto-subtitulo">
+              Si tenes un proyecto en mente, o simplemente buscas sumar un desarrollador a tu equipo, me encantaria que hablemos :)
+            </p>
+
+            <!-- ④ Email -->
+            <div class="contacto-email-wrapper">
+                <button class="contacto-email" id="contacto-email-btn" data-email="diegoabelleyra74@gmail.com" aria-label="Copiar email al portapapeles">
+                    diegoabelleyra74@gmail.com
+                </button>
+                <span class="email-tooltip" id="email-tooltip">Copiar al portapapeles</span>
+            </div>
+
+            <!-- ⑤ Botones CTA -->
+            <div class="contacto-botones">
+                <a href="mailto:diegoabelleyra74@gmail.com" class="contacto-btn-primario">
+                    <i class="fa-solid fa-envelope btn-icono-correo"></i> Escribir un Correo
+                </a>
+                <a href="https://www.linkedin.com/in/diego-lautaro-abelleyra-892735244" target="_blank" rel="noopener noreferrer" class="contacto-btn-secundario">
+                    <i class="fa-brands fa-linkedin btn-icono-linkedin"></i> Conectar en LinkedIn
+                </a>
+            </div>
+
+        </div>
+
+        <!-- ============ FOOTER ============ -->
+        <footer class="footer-principal">
+            <div class="footer-contenido">
+                <div class="footer-izquierda">
+                    &copy; 2026 Diego
+                </div>
+               
+                <div class="footer-derecha">
+                    <div class="footer-links">
+                        <a href="https://github.com/2Diego2" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/diego-lautaro-abelleyra-892735244" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+
+    <script src="js/contacto.js"></script>
 </body>
 </html>

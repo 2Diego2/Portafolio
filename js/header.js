@@ -32,3 +32,47 @@
     // 4. Seleccionar elementos y decirles que sean observados
     const head = document.querySelectorAll('.header');
     head.forEach(header => observadorHeader.observe(header));
+
+
+    // Texto Dinámico (Typing Effect)
+    const palabras = ["FULL STACK DEVELOPER", "TÉCNICO EN INFORMÁTICA"];
+    let indicePalabra = 0;
+    let indiceLetra = 0;
+    let escribiendo = true;
+    const carrusel = document.getElementById("hero-title-main");
+
+    function animacionTyping() {
+        if(!carrusel) return;
+        const palabraActual = palabras[indicePalabra];
+        
+        if (escribiendo) {
+            // Añadir una letra
+            carrusel.textContent = palabraActual.substring(0, indiceLetra + 1);
+            indiceLetra++;
+            
+            if (indiceLetra === palabraActual.length) {
+                escribiendo = false;
+                setTimeout(animacionTyping, 3000); // Pausa mostrando la palabra completa
+            } else {
+                setTimeout(animacionTyping, 80); // Velocidad al escribir
+            }
+        } else {
+            // Borrar una letra
+            carrusel.textContent = palabraActual.substring(0, indiceLetra - 1);
+            indiceLetra--;
+            
+            if (indiceLetra === 0) {
+                escribiendo = true;
+                indicePalabra = (indicePalabra + 1) % palabras.length;
+                setTimeout(animacionTyping, 500); // Pausa vacía antes de la siguiente palabra
+            } else {
+                setTimeout(animacionTyping, 40); // Velocidad al borrar
+            }
+        }
+    }
+    
+    // Iniciar con la primera palabra ya escrita en partes o campo vacío
+    if(carrusel) {
+        carrusel.textContent = "";
+        setTimeout(animacionTyping, 1200); // Esperar que termine la animación css inicial
+    }

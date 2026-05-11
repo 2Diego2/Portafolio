@@ -1,0 +1,518 @@
+/* ============ SECCIÓN CONTACTO ============ */
+
+/* --- CONTENEDOR PRINCIPAL --- */
+#contacto {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 140px 5% 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 1;
+}
+
+.contacto-contenido {
+    max-width: 680px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0;
+}
+
+/* ① Eyebrow Label */
+.contacto-eyebrow {
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 13px;
+    font-weight: 400;
+    color: #A0A0B0;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+    /* Scroll-in: estado inicial */
+    opacity: 0;
+    transform: translateY(24px);
+}
+
+/* ② Título Grande */
+.contacto-titulo {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(52px, 6vw, 80px);
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin: 0 0 20px 0;
+    /* Scroll-in: estado inicial */
+    opacity: 0;
+    transform: translateY(24px);
+}
+
+/* ③ Subtítulo humano */
+.contacto-subtitulo {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #A0A0B0;
+    line-height: 1.65;
+    max-width: 520px;
+    margin: 0 0 48px 0;
+    /* Scroll-in: estado inicial */
+    opacity: 0;
+    transform: translateY(24px);
+}
+
+/* ④ Email */
+.contacto-email-wrapper {
+    position: relative;
+    margin-bottom: 36px;
+    /* Scroll-in: estado inicial */
+    opacity: 0;
+    transform: translateY(24px);
+}
+
+.contacto-email {
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 22px;
+    font-weight: 400;
+    color: #ffffff;
+    cursor: pointer;
+    text-decoration: none;
+    transition: text-shadow 0.3s ease, color 0.3s ease;
+    position: relative;
+    display: inline-block;
+    background: none;
+    border: none;
+    padding: 8px 4px;
+    letter-spacing: -0.01em;
+}
+
+/* Efecto Glow al hover */
+.contacto-email:hover {
+    text-shadow:
+        0 0 10px rgba(97, 218, 251, 0.5),
+        0 0 20px rgba(97, 218, 251, 0.3),
+        0 0 40px rgba(97, 218, 251, 0.15);
+    color: #8ae8ff;
+}
+
+/* Tooltip "Copiar al portapapeles" */
+.email-tooltip {
+    position: absolute;
+    bottom: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%) translateY(6px);
+    background: rgba(20, 20, 30, 0.92);
+    color: #e0e0ee;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(97, 218, 251, 0.2);
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+    z-index: 10;
+}
+
+/* Flechita del tooltip */
+.email-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgba(20, 20, 30, 0.92) transparent transparent transparent;
+}
+
+/* Mostrar tooltip al hover del email */
+.contacto-email:hover + .email-tooltip,
+.contacto-email-wrapper:hover .email-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Estado "¡Copiado!" */
+.email-tooltip.copiado {
+    border-color: rgba(97, 218, 251, 0.5);
+    color: #61dafb;
+}
+
+
+/* ⑤ Botones CTA */
+.contacto-botones {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* Scroll-in: estado inicial */
+    opacity: 0;
+    transform: translateY(24px);
+}
+
+/* Botón Primario — Escribir Correo */
+.contacto-btn-primario,.contacto-btn-secundario {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    background: #a6cad4;
+    color: #0a0a0a;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.contacto-btn-primario:hover,.contacto-btn-secundario:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 24px rgba(97, 218, 251, 0.25),
+        0 0 40px rgba(97, 218, 251, 0.12);
+    background: #b4e5f3;
+}
+
+/* Wiggle del ícono de correo */
+.contacto-btn-primario:hover .btn-icono-correo {
+    animation: wiggle-correo 0.4s ease;
+}
+
+@keyframes wiggle-correo {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-4px); }
+    40% { transform: translateX(5px); }
+    60% { transform: translateX(-3px); }
+    80% { transform: translateX(2px); }
+}
+
+
+/* Botón Secundario — LinkedIn */
+/*.contacto-btn-secundario {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    background: #a6cad4;
+    color: #0a0a0a;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    border: 1px solid rgba(97, 218, 251, 0.4);
+    border-radius: 50px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-width 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    position: relative;
+}
+
+.contacto-btn-secundario:hover {
+       transform: translateY(-2px);
+    box-shadow:
+        0 8px 24px rgba(97, 218, 251, 0.25),
+        0 0 40px rgba(97, 218, 251, 0.12);
+    background: #b4e5f3;
+}*/
+
+/* Rotación sutil del ícono LinkedIn 
+.contacto-btn-secundario:hover .btn-icono-linkedin {
+    animation: rotate-linkedin 0.35s ease;
+}
+
+@keyframes rotate-linkedin {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(5deg); }
+}*/
+
+
+/* ============ ANIMACIÓN SCROLL-IN ============ */
+.contacto-visible .contacto-eyebrow {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition-delay: 0s;
+}
+
+.contacto-visible .contacto-titulo {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition-delay: 0.12s;
+}
+
+.contacto-visible .contacto-subtitulo {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition-delay: 0.24s;
+}
+
+.contacto-visible .contacto-email-wrapper {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition-delay: 0.36s;
+}
+
+.contacto-visible .contacto-botones {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition-delay: 0.48s;
+}
+
+
+/* ============ FOOTER ============ */
+.footer-principal {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 32px 5%;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: 80px;
+}
+
+.footer-contenido {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #555566;
+    transition: color 0.3s ease;
+}
+
+/* Hover general sobre el footer */
+.footer-principal:hover .footer-contenido {
+    color: #888899;
+}
+
+.footer-principal:hover .footer-links a {
+    color: #888899;
+}
+
+.footer-izquierda,
+.footer-derecha {
+    flex: 1;
+}
+
+.footer-izquierda {
+    text-align: left;
+}
+
+
+
+.codigo-tag {
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 13px;
+}
+
+.footer-derecha {
+    text-align: right;
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+}
+
+.footer-links a {
+    color: #555566;
+    font-size: 16px;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.footer-links a:hover {
+    color: #61dafb;
+    transform: translateY(-2px);
+}
+
+
+/* ============ RESPONSIVE ============ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    #contacto {
+        padding: 120px 5% 80px;
+    }
+
+    .contacto-titulo {
+        font-size: clamp(42px, 6vw, 64px);
+    }
+
+    .contacto-email {
+        font-size: 20px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    #contacto {
+        padding: 80px 5% 60px;
+    }
+
+    .contacto-titulo {
+        font-size: clamp(36px, 8vw, 52px);
+        letter-spacing: -1px;
+    }
+
+    .contacto-email {
+        font-size: 16px;
+        word-break: break-all;
+    }
+
+    .contacto-subtitulo {
+        font-size: 16px;
+        margin-bottom: 32px;
+    }
+
+    .contacto-eyebrow {
+        font-size: 12px;
+    }
+
+    .contacto-botones {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .contacto-btn-primario,
+    .contacto-btn-secundario {
+        width: 100%;
+        box-sizing: border-box;
+        justify-content: center;
+        min-height: 48px;
+    }
+
+    /* Footer responsive */
+    .footer-contenido {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .footer-izquierda,
+    .footer-centro,
+    .footer-derecha {
+        text-align: center;
+    }
+
+    .footer-links {
+        justify-content: center;
+    }
+
+    .footer-principal {
+        margin-top: 50px;
+    }
+}
+
+/* Mobile Small */
+@media (max-width: 480px) {
+    #contacto {
+        padding: 60px 4% 40px;
+    }
+
+    .contacto-titulo {
+        font-size: clamp(28px, 10vw, 40px);
+    }
+
+    .contacto-email {
+        font-size: 14px;
+        padding: 6px 2px;
+    }
+
+    .contacto-subtitulo {
+        font-size: 14px;
+        margin-bottom: 24px;
+    }
+
+    .contacto-eyebrow {
+        font-size: 11px;
+        margin-bottom: 12px;
+    }
+
+    .contacto-btn-primario,
+    .contacto-btn-secundario {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+
+    .footer-principal {
+        padding: 24px 4%;
+        margin-top: 40px;
+    }
+
+    .footer-contenido {
+        font-size: 12px;
+        gap: 10px;
+    }
+
+    .footer-links a {
+        font-size: 14px;
+    }
+}
+
+/* Touch devices */
+@media (hover: none) {
+    .contacto-email:hover {
+        text-shadow: none;
+        color: #ffffff;
+    }
+
+    .contacto-email:active {
+        text-shadow:
+            0 0 8px rgba(97, 218, 251, 0.4),
+            0 0 16px rgba(97, 218, 251, 0.2);
+        color: #8ae8ff;
+    }
+
+    .contacto-btn-primario:hover,
+    .contacto-btn-secundario:hover {
+        transform: none;
+        box-shadow: none;
+        background: #a6cad4;
+    }
+
+    .contacto-btn-primario:active,
+    .contacto-btn-secundario:active {
+        transform: translateY(-2px);
+        box-shadow:
+            0 6px 18px rgba(97, 218, 251, 0.2),
+            0 0 30px rgba(97, 218, 251, 0.1);
+        background: #b4e5f3;
+    }
+
+    .footer-links a:hover {
+        color: #555566;
+        transform: none;
+    }
+
+    .footer-links a:active {
+        color: #61dafb;
+        transform: translateY(-1px);
+    }
+}
+

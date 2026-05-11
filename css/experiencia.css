@@ -1,6 +1,6 @@
 .seccion-experiencia {
   padding: 100px 20px;
-  background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+  background-color: transparent;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #fff;
 }
@@ -98,7 +98,7 @@
   margin-bottom: 15px;
 }
 
-.cargo-trabajo, .tipo-trabajo {
+.cargo-trabajo {
   font-size: 1.35rem;
   color: #fff;
   margin: 0 0 8px 0;
@@ -186,33 +186,163 @@
   font-size: 0.75rem;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .linea-tiempo {
-    padding: 40px 0;
+/* Responsive Tablet */
+@media (max-width: 1024px) {
+  .seccion-experiencia {
+    padding: 80px 20px;
   }
 
+  .titulo-seccion {
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+  }
+
+  .contenido-tarjeta {
+    padding: 24px;
+  }
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+  .seccion-experiencia {
+    padding: 60px 15px;
+  }
+
+  .titulo-seccion {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+
+  .linea-tiempo {
+    padding: 20px 0;
+  }
+
+  /* Ocultar la línea central y convertir a stack simple */
   .linea-tiempo::before {
-    left: 20px;
+    left: 16px;
+    width: 2px;
   }
 
   .item-experiencia {
     flex-direction: column !important;
-    margin-left: 80px;
+    margin-left: 40px;
+    margin-bottom: 30px;
   }
 
   .contenido-tarjeta {
     width: 100%;
-    margin-bottom: 20px;
+    padding: 20px;
+    margin-bottom: 0;
+  }
+
+  .cargo-trabajo {
+    font-size: 1.15rem;
+  }
+
+  .fecha, .tipo-trabajo {
+    font-size: 0.85rem;
+  }
+
+  .descripcion-trabajo {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .lista-tecnologias {
+    gap: 8px;
+  }
+
+  .lista-tecnologias li {
+    padding: 5px 10px;
+    font-size: 0.75rem;
+  }
+
+  .empresa img {
+    width: 70px;
+    height: 55px;
   }
 
   .punto-marcador {
     position: absolute;
-    left: -70px;
+    left: -32px;
     top: 0;
-    width: 50px;
-    height: 50px;
-    font-size: 22px;
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
     margin: 0;
   }
 }
+
+/* Responsive Mobile Small */
+@media (max-width: 480px) {
+  .seccion-experiencia {
+    padding: 40px 12px;
+  }
+
+  .titulo-seccion {
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+  }
+
+  /* Eliminar línea temporal en pantallas muy pequeñas */
+  .linea-tiempo::before {
+    display: none;
+  }
+
+  .item-experiencia {
+    margin-left: 0;
+    margin-bottom: 20px;
+  }
+
+  .contenido-tarjeta {
+    padding: 16px;
+  }
+
+  .cargo-trabajo {
+    font-size: 1.05rem;
+  }
+
+  .lista-tecnologias li {
+    padding: 4px 8px;
+    font-size: 0.7rem;
+  }
+}
+
+/* Touch devices */
+@media (hover: none) {
+  .item-experiencia:hover .contenido-tarjeta {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(102, 126, 234, 0.3);
+    transform: none;
+    box-shadow: none;
+  }
+
+  .item-experiencia:active .contenido-tarjeta {
+    background: rgba(102, 126, 234, 0.1);
+    border-color: rgba(102, 126, 234, 0.5);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.15);
+  }
+
+  .lista-tecnologias li:hover {
+    background: rgba(102, 126, 234, 0.2);
+    color: #a0a0a0;
+    border-color: rgba(102, 126, 234, 0.3);
+  }
+
+  .lista-tecnologias li:active {
+    background: rgba(102, 126, 234, 0.35);
+    color: #fff;
+    border-color: rgba(102, 126, 234, 0.6);
+  }
+
+  .empresa a:hover img {
+    transform: none;
+    filter: brightness(0.9) saturate(1.1);
+  }
+
+  .empresa a:active img {
+    transform: scale(1.1);
+    filter: brightness(1.2) saturate(1.3) drop-shadow(0 0 6px rgba(102, 126, 234, 0.4));
+  }
+}

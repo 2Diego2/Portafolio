@@ -1,5 +1,5 @@
 :root {
-    --bg-color: #111111;
+    --bg-color: #0a0a0a;
     --text-color: #ffffff;
     --accent-color: #61dafb;
 }
@@ -10,6 +10,7 @@ body {
     font-family: 'Helvetica Neue', sans-serif; /* O la fuente que elijas */
     margin: 0;
     overflow-x: hidden; /* Evita scroll horizontal indeseado */
+    position: relative; /* Permite fondos absolutos globales limitados al documento total */
 }
 
 /* Clases de utilidad */
@@ -36,4 +37,80 @@ body {
 
 .hidden {
     transform: translateY(-100%); /* Lo esconde hacia arriba */
+}
+
+/* ============ FONDOS AURORA GLOBALES ============ */
+.fondo-auroras-globales {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0; /* Abarca TODA la altura del scroll del body */
+    z-index: -999;
+    overflow: hidden; /* Recorta limpiamente cualquier aurora que salga de la pantalla web sin clip local */
+    pointer-events: none;
+    background: radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.02) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 40%);
+}
+
+.seccion-relativa {
+    position: relative;
+    padding-top: 100px;
+    scroll-margin-top: 120px; /* Evita que el navbar superponga la sección al navegar con los links del menú */
+    /* Sin overflow: hidden, para que el contenido no dependa de rectortes internos */
+}
+
+/* Colores Base de blobs (la posición vertical (top) se controla en el index.html para fácil ajuste) */
+.blob-stack-1 { width: 500px; height: 500px; background: rgba(227, 79, 38, 0.8); animation-delay: 0s; }
+.blob-stack-2 { width: 600px; height: 600px; background: rgba(247, 223, 30, 0.8); animation-delay: -5s; opacity: 0.25; }
+
+.blob-proj-1 { width: 550px; height: 550px; background: rgba(236, 72, 153, 0.8); animation-delay: -2s; }
+.blob-proj-2 { width: 450px; height: 450px; background: rgba(139, 92, 246, 0.8); animation-delay: -7s; }
+
+.blob-exp-1 { width: 600px; height: 600px; background: rgba(16, 185, 129, 0.8); animation-delay: -4s; }
+.blob-exp-2 { width: 500px; height: 500px; background: rgba(59, 130, 246, 0.8); animation-delay: -9s; opacity: 0.25; }
+
+.blob-contacto-1 { width: 400px; height: 400px; background: rgba(97, 218, 251, 0.6); animation-delay: -3s; opacity: 0.15; }
+.blob-contacto-2 { width: 350px; height: 350px; background: rgba(155, 89, 182, 0.6); animation-delay: -8s; opacity: 0.12; }
+
+/* ============ RESPONSIVE GLOBAL ============ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .seccion-relativa {
+        padding-top: 70px;
+        scroll-margin-top: 80px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .seccion-relativa {
+        padding-top: 50px;
+        scroll-margin-top: 60px;
+    }
+
+    /* Reducir auroras en mobile */
+    .blob-hero-1, .blob-exp-1 { width: 250px; height: 250px; }
+    .blob-hero-2, .blob-stack-2, .blob-exp-2 { width: 200px; height: 200px; }
+    .blob-stack-1 { width: 200px; height: 200px; }
+    .blob-proj-1 { width: 220px; height: 220px; }
+    .blob-proj-2 { width: 180px; height: 180px; }
+    .blob-contacto-1 { width: 150px; height: 150px; }
+    .blob-contacto-2 { width: 130px; height: 130px; }
+
+    .aurora-blob {
+        filter: blur(50px);
+        opacity: 0.25;
+    }
+}
+
+@media (max-width: 480px) {
+    .seccion-relativa {
+        padding-top: 40px;
+        scroll-margin-top: 50px;
+    }
+
+    .blob-hero-1, .blob-exp-1 { width: 180px; height: 180px; }
+    .blob-hero-2, .blob-stack-2, .blob-exp-2 { width: 150px; height: 150px; }
+    .blob-stack-1 { width: 150px; height: 150px; }
+    .blob-proj-1, .blob-proj-2 { width: 140px; height: 140px; }
+    .blob-contacto-1, .blob-contacto-2 { width: 100px; height: 100px; }
 }

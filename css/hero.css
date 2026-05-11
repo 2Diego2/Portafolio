@@ -15,8 +15,7 @@
     position: relative;
     width: 100%;
     min-height: 100vh;
-    background-color: var(--hero-bg);
-    overflow: hidden; /* Para que la aurora no desborde */
+    background-color: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,17 +23,8 @@
     z-index: 1;
 }
 
-/* --- FONDO ANIMADO (Aurora Borealis) --- */
-.hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* Detrás de todo */
-    background: radial-gradient(circle at 10% 10%, rgba(97, 218, 251, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(155, 89, 182, 0.05) 0%, transparent 40%);
-}
+/* --- FONDO ANIMADO GLOBAL (Aurora Borealis) --- */
+/* (El contenedor global de auroras está en main.css bajo .fondo-auroras-globales) */
 
 .aurora-blob {
     position: absolute;
@@ -44,22 +34,19 @@
     animation: aurora-float 10s infinite alternate ease-in-out;
 }
 
-.blob-1 {
-    width: 500px;
-    height: 500px;
-    background: var(--hero-accent-cyan);
-    top: -10%;
-    right: -10%;
-    animation-delay: 0s;
-}
-
-.blob-2 {
+/* Colores para Hero (top posicionado desde index.html) */
+.blob-hero-1 {
     width: 600px;
     height: 600px;
-    background: var(--hero-accent-purple);
-    bottom: -10%;
-    left: -10%;
+    background: rgba(97, 218, 251, 0.4); /* Cyan React */
+}
+
+.blob-hero-2 {
+    width: 500px;
+    height: 500px;
+    background: rgba(155, 89, 182, 0.4); /* Purple */
     animation-delay: -5s;
+    opacity: 0.25;
 }
 
 /* --- LAYOUT GRID/FLEX --- */
@@ -96,7 +83,7 @@
 }
 
 .hero-title-main {
-    font-size: clamp(3rem, 5vw, 5.5rem); /* Gigante y responsivo */
+    font-size: clamp(2.5rem, 5vw, 4rem); /* Responsivo y correcto */
     line-height: 0.95;
     font-weight: 800;
     color: var(--hero-text-main);
@@ -105,13 +92,33 @@
     margin: 0;
     letter-spacing: -2px;
     opacity: 0;
-    animation: fade-in-up 0.8s ease-out 0.4s forwards;
+    animation: fade-in-up 3s ease-out 0.4s forwards;
 }
 
-.hero-title-main .highlight {
-    color: transparent;
-    -webkit-text-stroke: 2px var(--hero-accent-cyan); /* Efecto Outline */
-    display: block; /* Forzar salto de línea visual si es necesario */
+.hero-title-main::after {
+    content: '|';
+    color: var(--hero-accent-cyan);
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.hero-subtitulo-carrera {
+    font-size: 1.1rem;
+    color: #E2E8F0;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    margin-top: 10px;
+    opacity: 0;
+    animation: fade-in-up 0.8s ease-out 0.5s forwards;
+}
+
+.hero-subtitulo-carrera h4 {
+    margin: 0;
+    font-weight: 500;
 }
 
 /* Decoración de Código */
@@ -122,7 +129,6 @@
     margin-top: 20px;
     padding: 10px 20px;
     background: rgba(255, 255, 255, 0.05);
-    border-left: 3px solid var(--hero-accent-cyan);
     border-radius: 0 8px 8px 0;
     width: fit-content;
     opacity: 0;
@@ -130,13 +136,6 @@
     position: relative;
 }
 
-.hero-code-snippet::before {
-    content: '// Developer Profile';
-    display: block;
-    font-size: 0.8rem;
-    color: #666;
-    margin-bottom: 5px;
-}
 
 /* Botones / CTA */
 .hero-cta {
@@ -277,43 +276,192 @@
     50% { transform: translateY(-10px); }
 }
 
-/* --- RESPONSIVE MOBILE --- */
-@media (max-width: 900px) {
+/* --- RESPONSIVE TABLET (≤1024px) --- */
+@media (max-width: 1024px) {
     #hero {
-        padding-top: 100px;
+        padding: 100px 5% 50px;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+
+    .hero-title-main {
+        font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    .hero-subtitle {
+        font-size: 1.3rem;
+    }
+
+    .hero-code-snippet {
+        font-size: 0.95rem;
+    }
+}
+
+/* --- RESPONSIVE MOBILE (≤768px) --- */
+@media (max-width: 768px) {
+    #hero {
+        padding: 80px 5% 40px;
         text-align: center;
-        height: auto; /* Dejar crecer si es necesario */
+        height: auto;
         min-height: 100vh;
     }
 
     .hero-container {
-        grid-template-columns: 1fr; /* Stackear */
-        gap: 40px;
+        grid-template-columns: 1fr;
+        gap: 30px;
     }
 
     .hero-text {
-        align-items: center; /* Centrar textos */
-        order: 1; /* Texto abajo en diseño visual? O arriba? Usualmente arriba en mobile también */
+        align-items: center;
+        order: 1;
     }
 
     .hero-visual {
-        order: 0; /* Sticker arriba o entre texto? Probemos normal (texto arriba) */
+        order: 0;
     }
 
     .hero-title-main {
-        font-size: 3rem; /* Más pequeño */
+        font-size: clamp(2rem, 8vw, 3rem);
+        letter-spacing: -1px;
     }
-    
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .hero-subtitulo-carrera {
+        font-size: 0.95rem;
+    }
+
+    .hero-code-snippet {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: 8px;
+        text-align: left;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        margin-top: 20px;
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .btn-primary, .btn-secondary {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
     .sticker-aura {
-        width: 250px;
-        height: 250px;
+        width: 220px;
+        height: 220px;
     }
 
     .hero-sticker-img {
-        max-width: 280px;
+        max-width: 240px;
     }
-    
-    .blob-1, .blob-2 {
-        opacity: 0.3; /* Menos obtrusivo en móvil */
+
+    .blob-hero-1, .blob-hero-2 {
+        opacity: 0.25;
     }
 }
+
+/* --- RESPONSIVE MOBILE SMALL (≤480px) --- */
+@media (max-width: 480px) {
+    #hero {
+        padding: 70px 4% 30px;
+        min-height: auto;
+    }
+
+    .hero-title-main {
+        font-size: clamp(1.6rem, 10vw, 2.5rem);
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-subtitulo-carrera {
+        font-size: 0.85rem;
+    }
+
+    .hero-subtitulo-carrera h4 {
+        line-height: 1.4;
+    }
+
+    .hero-code-snippet {
+        font-size: 0.8rem;
+        padding: 8px 12px;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        box-sizing: border-box;
+        justify-content: center;
+        padding: 14px 20px;
+    }
+
+    .sticker-aura {
+        width: 180px;
+        height: 180px;
+    }
+
+    .hero-sticker-img {
+        max-width: 200px;
+    }
+
+    .deco-circle, .deco-cross {
+        display: none;
+    }
+}
+
+/* --- TOUCH DEVICE: Reemplazar hover del sticker --- */
+@media (hover: none) {
+    .hero-sticker-img:hover {
+        transform: none;
+    }
+
+    .hero-sticker-img:active {
+        transform: scale(1.03);
+    }
+
+    .btn-primary:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .btn-primary:active {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-secondary:hover {
+        background: transparent;
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-secondary:active {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: white;
+    }
+}
+

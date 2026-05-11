@@ -345,7 +345,7 @@ gap: 20px;
 }
 
 /* EFECTO DE FOCO: Desenfoque a todos los iconos cuando uno tiene hover */
-#tech-stack:hover .floating-tech:not(:hover) {
+#tech-stack:has(.floating-tech:hover) .floating-tech:not(:hover) {
   filter: blur(3px);
   opacity: 0.5;
   transition: all 0.4s ease;
@@ -449,5 +449,255 @@ gap: 20px;
   visibility: visible;
   /* Subida suave: de translateY(10px) a -10px */
   transform: translateX(-50%) translateY(-10px); 
+}
+
+/* Modificación para los iconos superiores (HTML, CSS, React) para que el cartel se vea hacia abajo y no se corte */
+.floating-tech:nth-of-type(1) .tech-tooltip,
+.floating-tech:nth-of-type(2) .tech-tooltip,
+.floating-tech:nth-of-type(3) .tech-tooltip {
+  bottom: auto;
+  top: 100%;
+  transform: translateX(-50%) translateY(-10px);
+}
+
+.floating-tech:nth-of-type(1):hover .tech-tooltip,
+.floating-tech:nth-of-type(2):hover .tech-tooltip,
+.floating-tech:nth-of-type(3):hover .tech-tooltip {
+  transform: translateX(-50%) translateY(10px);
+}
+
+.floating-tech:nth-of-type(1) .tech-tooltip::after,
+.floating-tech:nth-of-type(2) .tech-tooltip::after,
+.floating-tech:nth-of-type(3) .tech-tooltip::after {
+  top: auto;
+  bottom: 100%;
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent transparent #ffffff transparent;
+}
+
+
+/* ============ RESPONSIVE TECH STACK ============ */
+
+/* Tablet (≤1024px) — Reducir tamaño de iconos */
+@media (max-width: 1024px) {
+  #tech-stack {
+    padding: 80px 30px;
+    min-height: 60vh;
+  }
+
+  .floating-tech {
+    width: 65px;
+    height: 65px;
+  }
+
+  .tech-tooltip {
+    width: 190px;
+    padding: 0.8rem;
+  }
+
+  .tooltip-header {
+    font-size: 14px;
+  }
+
+  .tooltip-list {
+    font-size: 12px;
+  }
+}
+
+/* Mobile (≤768px) — Cambiar a GRID estático */
+@media (max-width: 768px) {
+  #tech-stack {
+    min-height: auto;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .section-title {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    flex-shrink: 0;
+  }
+
+  /* Convertir iconos de absoluto a grid */
+  .floating-tech {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    opacity: 1;
+    width: 60px;
+    height: 60px;
+  }
+
+  /* Deshabilitar TODAS las animaciones de dispersión en mobile */
+  .floating-tech.visible,
+  .floating-tech.visible:nth-of-type(1),
+  .floating-tech.visible:nth-of-type(2),
+  .floating-tech.visible:nth-of-type(3),
+  .floating-tech.visible:nth-of-type(4),
+  .floating-tech.visible:nth-of-type(5),
+  .floating-tech.visible:nth-of-type(6),
+  .floating-tech.visible:nth-of-type(7),
+  .floating-tech.visible:nth-of-type(8) {
+    animation: fadeInGrid 0.5s ease-out forwards !important;
+  }
+
+  /* Deshabilitar flotaciones continuas en mobile */
+  .floating-tech.visible:nth-of-type(1) img,
+  .floating-tech.visible:nth-of-type(2) img,
+  .floating-tech.visible:nth-of-type(3) img,
+  .floating-tech.visible:nth-of-type(4) img,
+  .floating-tech.visible:nth-of-type(5) img,
+  .floating-tech.visible:nth-of-type(6) img,
+  .floating-tech.visible:nth-of-type(7) img,
+  .floating-tech.visible:nth-of-type(8) img {
+    animation: none !important;
+  }
+
+  /* Delays escalonados */
+  .floating-tech.visible:nth-of-type(1) { animation-delay: 0.05s !important; }
+  .floating-tech.visible:nth-of-type(2) { animation-delay: 0.1s !important; }
+  .floating-tech.visible:nth-of-type(3) { animation-delay: 0.15s !important; }
+  .floating-tech.visible:nth-of-type(4) { animation-delay: 0.2s !important; }
+  .floating-tech.visible:nth-of-type(5) { animation-delay: 0.25s !important; }
+  .floating-tech.visible:nth-of-type(6) { animation-delay: 0.3s !important; }
+  .floating-tech.visible:nth-of-type(7) { animation-delay: 0.35s !important; }
+  .floating-tech.visible:nth-of-type(8) { animation-delay: 0.4s !important; }
+
+  @keyframes fadeInGrid {
+    from {
+      opacity: 0;
+      transform: scale(0.8) translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  /* Deshabilitar el focus/blur efecto en mobile */
+  #tech-stack:has(.floating-tech:hover) .floating-tech:not(:hover) {
+    filter: none;
+    opacity: 1;
+  }
+
+  /* Tooltip en mobile: posicionar debajo del icono */
+  .tech-tooltip,
+  .floating-tech:nth-of-type(1) .tech-tooltip,
+  .floating-tech:nth-of-type(2) .tech-tooltip,
+  .floating-tech:nth-of-type(3) .tech-tooltip {
+    bottom: auto;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-5px);
+    width: 180px;
+    padding: 0.7rem;
+    font-size: 12px;
+    z-index: 1000;
+  }
+
+  /* Tooltip arrow siempre arriba */
+  .tech-tooltip::after,
+  .floating-tech:nth-of-type(1) .tech-tooltip::after,
+  .floating-tech:nth-of-type(2) .tech-tooltip::after,
+  .floating-tech:nth-of-type(3) .tech-tooltip::after {
+    top: auto;
+    bottom: 100%;
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent #ffffff transparent;
+  }
+
+  /* Mostrar tooltip al tap (clase .tooltip-activo agregada por JS) */
+  .floating-tech.tooltip-activo .tech-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .floating-tech:hover .tech-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .floating-tech:nth-of-type(1):hover .tech-tooltip,
+  .floating-tech:nth-of-type(2):hover .tech-tooltip,
+  .floating-tech:nth-of-type(3):hover .tech-tooltip {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Mobile small (≤480px) */
+@media (max-width: 480px) {
+  #tech-stack {
+    padding: 40px 15px;
+    gap: 16px;
+  }
+
+  .floating-tech {
+    width: 50px;
+    height: 50px;
+  }
+
+  .tech-tooltip {
+    width: 160px;
+    padding: 0.6rem;
+  }
+
+  .tooltip-header {
+    font-size: 13px;
+    margin-bottom: 5px;
+    padding-bottom: 4px;
+  }
+
+  .tooltip-list {
+    font-size: 11px;
+  }
+
+  .tooltip-list li {
+    gap: 5px;
+    margin-bottom: 2px;
+  }
+}
+
+/* Touch devices: Usar tap en vez de hover para tooltips */
+@media (hover: none) {
+  .floating-tech:hover .tech-tooltip {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .floating-tech:hover {
+    animation-play-state: running;
+    z-index: auto;
+    filter: none;
+    opacity: 1;
+  }
+
+  /* Solo mostrar con clase de JS */
+  .floating-tech.tooltip-activo {
+    z-index: 100;
+  }
+
+  .floating-tech.tooltip-activo .tech-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  #tech-stack:has(.floating-tech:hover) .floating-tech:not(:hover) {
+    filter: none;
+    opacity: 1;
+  }
 }
 

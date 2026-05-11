@@ -68,4 +68,26 @@ document.addEventListener('DOMContentLoaded', () => {
         if(indicador) indicador.style.opacity = '0';
     });
 
+    // ==========================================
+    // 3. CERRAR AL HACER SCROLL (Mobile UX)
+    // ==========================================
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener('scroll', () => {
+        const diff = Math.abs(window.scrollY - lastScrollY);
+        if (diff > 50 && nav.classList.contains('active')) {
+            nav.classList.remove('active');
+        }
+        lastScrollY = window.scrollY;
+    }, { passive: true });
+
+    // ==========================================
+    // 4. RESET AL CAMBIAR TAMAÑO DE VENTANA
+    // ==========================================
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 1024) {
+            nav.classList.remove('active');
+        }
+    });
+
 });

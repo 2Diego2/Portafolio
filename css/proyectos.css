@@ -761,4 +761,143 @@
   .boton-proyecto.secundario {
     width: 100%;
   }
+
+  .contenedor-proyectos {
+    grid-template-columns: 1fr;
+    padding: 20px 12px;
+    gap: 20px;
+  }
+
+  .filtros-container {
+    gap: 8px;
+    padding: 0 12px;
+  }
+
+  .filtro-btn {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  .boton-proyecto {
+    min-height: 44px;
+    font-size: 0.85rem;
+  }
+
+  .modal-header h2 {
+    font-size: 1.3rem;
+  }
+
+  .modal-body {
+    padding: 16px;
+  }
+
+  .modal-header {
+    padding: 16px;
+  }
 }
+
+/* Touch devices: Mejorar interacción sin hover */
+@media (hover: none) {
+  /* Mostrar overlay siempre de forma sutil en touch */
+  .overlay-imagen {
+    opacity: 0;
+  }
+
+  .tarjeta-proyecto:hover {
+    transform: none;
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  .tarjeta-proyecto:active {
+    transform: translateY(-3px);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+  }
+
+  .tarjeta-proyecto:hover .preview-imagen {
+    opacity: 0.7;
+    transform: none;
+    filter: grayscale(0.3);
+  }
+
+  .boton-proyecto:hover {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: none;
+  }
+
+  .boton-proyecto:active {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+  }
+
+  .boton-proyecto.principal:hover {
+    background: #ffffff;
+    transform: none;
+  }
+
+  .boton-proyecto.principal:active {
+    background: #e0e0e0;
+    transform: translateY(-1px);
+  }
+
+  .filtro-btn:hover {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.15);
+    color: #a0a0a0;
+    transform: none;
+  }
+
+  .filtro-btn:active {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+  }
+
+  .logo-tech-wrapper:hover {
+    transform: none;
+  }
+
+  .logo-tech-wrapper:active {
+    transform: translateY(-2px);
+  }
+
+  /* Modal touch adjustments */
+  .modal-cerrar:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: none;
+  }
+
+  .modal-cerrar:active {
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(90deg);
+  }
+
+  .caracteristicas-lista li:hover {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: transparent;
+    transform: none;
+  }
+
+  .caracteristicas-lista li:active {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.08);
+    transform: translateX(4px);
+  }
+
+  .tech-badge:hover {
+    background: rgba(255, 255, 255, 0.03);
+    transform: none;
+  }
+
+  .tech-badge:active {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-2px);
+  }
+}

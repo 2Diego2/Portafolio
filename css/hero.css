@@ -95,11 +95,12 @@
     letter-spacing: -2px;
     opacity: 0;
     animation: fade-in-up 3s ease-out 0.4s forwards;
+    min-height: 1.9em; /* Reserva espacio para 2 líneas, evitando saltos de diseño al escribir */
 }
 
 .hero-title-main::after {
     content: '|';
-    color: var(--hero-accent-cyan);
+    color: var(--hero-text-muted);
     animation: blink 1s step-end infinite;
 }
 
@@ -152,6 +153,7 @@
 }
 
 .btn-primary {
+    align-items: center;
     padding: 12px 30px;
     background: white;
     color: black;
@@ -159,6 +161,8 @@
     border-radius: 30px;
     text-decoration: none;
     transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    gap: 8px;
 }
 
 .btn-primary:hover {
@@ -167,6 +171,7 @@
 }
 
 .btn-secondary {
+    align-items: center;
     padding: 12px 30px;
     background: transparent;
     color: white;
@@ -175,6 +180,8 @@
     border-radius: 30px;
     text-decoration: none;
     transition: all 0.2s;
+    display: flex;
+    gap: 8px;
 }
 
 .btn-secondary:hover {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu Nombre | Desarrollador</title>
+    <title>Diego | Desarrollador</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <link rel="stylesheet" href="css/index.css">
@@ -17,12 +17,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;800&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/navbar.css"> <!-- NUEVO ESTILO NAV -->
-    <link rel="stylesheet" href="css/hero.css">   <!-- NUEVO ESTILO HERO -->
+    <link rel="stylesheet" href="css/navbar.css"> 
+    <link rel="stylesheet" href="css/hero.css">       
 </head>
 <body>
 
-    <!-- FONDO AURORAS GLOBAL (Sin interrupciones visuales de capas Transform) -->
+    <!-- FONDO AURORAS GLOBAL -->
     <div class="fondo-auroras-globales">
         <!-- Hero Auroras -->
         <div class="aurora-blob blob-hero-1" style="top: 2%; left: -5%;"></div>
@@ -45,7 +45,7 @@
         <div class="aurora-blob blob-contacto-2" style="top: 98%; right: 10%;"></div>
     </div>
 
-    <!-- HERO SECTION REDESIGN -->
+    <!-- HERO SECTION -->
     <section id="hero" class="seccion-relativa">
         <div class="hero-container">
             <!-- Columna Izquierda: Texto -->
@@ -53,14 +53,14 @@
                 <h2 class="hero-subtitle">Bienvenido/a.<br>
                 Soy <span class="nombre-destacado">Diego :)</span></h2>
 
-                <h1 class="hero-title-main" id="hero-title-main"></h1>
+                <h1 class="hero-title-main" id="hero-title-main"></h1> <!--Titulos mios-->
                 
                 <div class="hero-subtitulo-carrera">
                     <h4>* A tan solo 3 materias de ser <br>Técnico Superior en Desarrollo de Software ;)</h4>
                 </div>
 
                 <div class="hero-code-snippet">
-<span style="color: #94a3b8; line-height: 1.6;">
+<span style="color: #f3f5f7; line-height: 1.6;">
     Desarrollador dando mis primeros pasos profesionales. Me apasiona el ciclo completo de desarrollo: desde el diseño de interfaces claras hasta la estructuración de bases de datos y el despliegue de la aplicación. Hoy divido mi tiempo entre el terciario, el trabajo y la creación de productos a medida, buscando un equipo donde pueda sumar valor desde el primer día.
 </span>                
                 </div>
@@ -92,11 +92,9 @@
             </div>
         </div>
         
-        <!-- Indicador Scroll (Mantenido o rediseñado, opcional, por ahora lo quito para limpiar) -->
     </section>
 
-    <!-- Header original refactorizado -->
-    <!-- Header original refactorizado - Dynamic Island -->
+    <!-- HEADER -->
     <header class="header">
         <nav class="nav" id="dynamic-nav">
             
@@ -107,14 +105,13 @@
 
             <!-- Estado Abierto: Links -->
             <div class="nav-content">
-                <a class="yo" href="#hero"><i class="fa-solid fa-code"></i> CONOCEME</a>
+                <a class="yo" href="#hero"><i class="fa-solid fa-circle-user"></i> CONOCEME</a>
                 <a class="Stack" href="#tech-stack"><i class="fa-solid fa-code"></i> STACK</a> <!-- Icono ajustado -->
                 <a class="proyectos" href="#proyectos"><i class="fa-solid fa-briefcase"></i> PROYECTOS</a>
                 <a class="Experiencia" href="#experiencia"><i class="fa-solid fa-user-clock"></i> EXPERIENCIA</a>
                 <a class="Contacto" href="#contacto"><i class="fa-solid fa-envelope"></i> CONTACTO</a>
-                <a class="boton-cv" href="assets/Cv.Diego.L.Abelleyra.pdf" download><i class="fa-solid fa-file-pdf"></i> CV</a>
+                <a class="boton-cv" href="assets/Cv.Diego.L.Abelleyra.pdf" download target="_blank"> <i class="fa-solid fa-file-pdf"></i> CV</a>
                 
-                <!-- La Línea Mágica -->
                 <div class="indicador"></div>
             </div>
         </nav>
@@ -213,9 +210,11 @@
         <div class="contenedor-proyectos" id="contenedorProyectos"></div>
     </section>
     <script src="js/header.js"></script>
+     <script src="js/botoncv.js"></script>
     <script src="js/index.js"></script>
     <script src="js/proyectos.js"></script>
     <script src="js/navbar.js"></script>
+   
 
     <section id="experiencia" class="seccion-experiencia seccion-relativa">
   <div class="contenedor-principal">
@@ -295,18 +294,18 @@
     <section id="contacto" class="seccion-relativa">
         <div class="contacto-contenido">
 
-            <!-- ① Eyebrow -->
+            <!-- Eyebrow -->
             <span class="contacto-eyebrow">¿Listo/a para construir algo?</span>
 
-            <!-- ② Título -->
+            <!-- Título -->
             <h2 class="contacto-titulo">Trabajemos juntos.</h2>
 
-            <!-- ③ Subtítulo -->
+            <!-- Subtítulo -->
             <p class="contacto-subtitulo">
               Si tenes un proyecto en mente, o simplemente buscas sumar un desarrollador a tu equipo, me encantaria que hablemos :)
             </p>
 
-            <!-- ④ Email -->
+            <!-- Email -->
             <div class="contacto-email-wrapper">
                 <button class="contacto-email" id="contacto-email-btn" data-email="diegoabelleyra74@gmail.com" aria-label="Copiar email al portapapeles">
                     diegoabelleyra74@gmail.com
@@ -314,7 +313,7 @@
                 <span class="email-tooltip" id="email-tooltip">Copiar al portapapeles</span>
             </div>
 
-            <!-- ⑤ Botones CTA -->
+            <!--  Botones CTA -->
             <div class="contacto-botones">
                 <a href="mailto:diegoabelleyra74@gmail.com" class="contacto-btn-primario">
                     <i class="fa-solid fa-envelope btn-icono-correo"></i> Escribir un Correo
@@ -346,6 +345,17 @@
             </div>
         </footer>
     </section>
+
+    <!-- MODAL DE ADVERTENCIA PARA CV -->
+    <div id="cv-modal" class="cv-modal-overlay">
+        <div class="cv-modal-content">
+            <p class="modal-text">¿Estás por descargar mi CV, deseas continuar?</p>
+            <div class="modal-actions">
+                <button id="modal-cancel" class="btn-modal-cancelar">Cancelar</button>
+                <button id="modal-confirm" class="btn-modal-descargar">Descargar</button>
+            </div>
+        </div>
+    </div>
 
     <script src="js/contacto.js"></script>
 </body>

@@ -1,7 +1,3 @@
-/* ============ ESTILOS DE SECCIÓN DE TECNOLOGÍAS ============ */
-
-
-
 
 /* ============ ESTILOS DE SECCIÓN DE TECNOLOGÍAS ============ */
 
@@ -448,94 +444,62 @@
 }
 
 
-/* ============ RESPONSIVE TECH STACK ============ */
-
-/* Tablet (≤1024px) — Reducir tamaño de iconos */
+/* ============ RESPONSIVE TECH STACK (≤1024px) ============ */
 @media (max-width: 1024px) {
   #tech-stack {
     padding: 80px 30px;
-    min-height: 60vh;
-  }
-
-  .floating-tech {
-    width: 65px;
-    height: 65px;
-  }
-
-  .tech-tooltip {
-    width: 190px;
-    padding: 0.8rem;
-  }
-
-  .tooltip-header {
-    font-size: 14px;
-  }
-
-  .tooltip-list {
-    font-size: 12px;
-  }
-}
-
-/* Mobile (≤768px) — Cambiar a GRID estático */
-@media (max-width: 768px) {
-  #tech-stack {
     min-height: auto;
-    padding: 60px 20px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 columnas en tablet */
     gap: 20px;
-    overflow: hidden; /* Prevenir overflow de tooltips */
+    align-items: stretch;
   }
 
   .section-title {
-    position: relative;
-    z-index: 2;
-    width: 100%;
+    grid-column: 1 / -1;
+    margin-bottom: 20px;
+  }
+
+  /* Transformar icono flotante en Tarjeta Glassmorphism */
+  .floating-tech {
+    position: relative !important;
+    top: auto !important; left: auto !important; right: auto !important; bottom: auto !important;
+    transform: none !important;
+    opacity: 0; /* Para el fade-in */
+    width: 100% !important;
+    height: auto !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: rgba(15, 15, 20, 0.6) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 16px;
+    padding: 20px;
+    box-sizing: border-box;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    gap: 20px;
+    z-index: 1 !important;
+    /* Evitar que se pause la animación si se hace "hover" táctil */
+    animation-play-state: running !important;
+  }
+
+  .floating-tech img {
+    width: 55px !important;
+    height: 55px !important;
     flex-shrink: 0;
   }
 
-  /* Convertir iconos de absoluto a grid */
-  .floating-tech {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    right: auto !important;
-    bottom: auto !important;
-    transform: none !important;
-    opacity: 1;
-    width: 60px;
-    height: 60px;
-  }
-
-  /* Deshabilitar TODAS las animaciones de dispersión en mobile */
+  /* Deshabilitar dispersión y flotación */
   .floating-tech.visible,
-  .floating-tech.visible:nth-of-type(1),
-  .floating-tech.visible:nth-of-type(2),
-  .floating-tech.visible:nth-of-type(3),
-  .floating-tech.visible:nth-of-type(4),
-  .floating-tech.visible:nth-of-type(5),
-  .floating-tech.visible:nth-of-type(6),
-  .floating-tech.visible:nth-of-type(7),
-  .floating-tech.visible:nth-of-type(8) {
+  .floating-tech.visible:nth-of-type(n) {
     animation: fadeInGrid 0.5s ease-out forwards !important;
   }
 
-  /* Deshabilitar flotaciones continuas en mobile */
-  .floating-tech.visible:nth-of-type(1) img,
-  .floating-tech.visible:nth-of-type(2) img,
-  .floating-tech.visible:nth-of-type(3) img,
-  .floating-tech.visible:nth-of-type(4) img,
-  .floating-tech.visible:nth-of-type(5) img,
-  .floating-tech.visible:nth-of-type(6) img,
-  .floating-tech.visible:nth-of-type(7) img,
-  .floating-tech.visible:nth-of-type(8) img {
+  .floating-tech.visible:nth-of-type(n) img {
     animation: none !important;
   }
-
-  /* Delays escalonados */
+  
   .floating-tech.visible:nth-of-type(1) { animation-delay: 0.05s !important; }
   .floating-tech.visible:nth-of-type(2) { animation-delay: 0.1s !important; }
   .floating-tech.visible:nth-of-type(3) { animation-delay: 0.15s !important; }
@@ -546,68 +510,83 @@
   .floating-tech.visible:nth-of-type(8) { animation-delay: 0.4s !important; }
 
   @keyframes fadeInGrid {
-    from {
-      opacity: 0;
-      transform: scale(0.8) translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  /* Deshabilitar el focus/blur efecto en mobile */
-  #tech-stack:has(.floating-tech:hover) .floating-tech:not(:hover) {
-    filter: none;
-    opacity: 1;
-  }
-
-  /* Tooltip en mobile: OCULTO por defecto */
+  /* Transformar Tooltip en Contenido Principal de Tarjeta */
   .tech-tooltip,
-  .floating-tech:nth-of-type(1) .tech-tooltip,
-  .floating-tech:nth-of-type(2) .tech-tooltip,
-  .floating-tech:nth-of-type(3) .tech-tooltip {
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none;
-    bottom: auto;
-    top: calc(100% + 10px);
-    left: 50%;
-    transform: translateX(-50%) translateY(5px);
-    width: 180px;
-    padding: 0.7rem;
-    font-size: 12px;
-    z-index: 1000;
-    transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
-  }
-
-  /* Tooltip arrow siempre arriba */
-  .tech-tooltip::after,
-  .floating-tech:nth-of-type(1) .tech-tooltip::after,
-  .floating-tech:nth-of-type(2) .tech-tooltip::after,
-  .floating-tech:nth-of-type(3) .tech-tooltip::after {
-    top: auto;
-    bottom: 100%;
-    border-width: 6px;
-    border-style: solid;
-    border-color: transparent transparent #ffffff transparent;
-  }
-
-  /* Deshabilitar TODOS los hover en tooltips en mobile */
-  .floating-tech:hover .tech-tooltip,
-  .floating-tech:nth-of-type(1):hover .tech-tooltip,
-  .floating-tech:nth-of-type(2):hover .tech-tooltip,
-  .floating-tech:nth-of-type(3):hover .tech-tooltip {
-    opacity: 0 !important;
-    visibility: hidden !important;
-  }
-
-  /* ÚNICO modo de mostrar tooltip en mobile: clase .tooltip-activo del JS */
-  .floating-tech.tooltip-activo > .tech-tooltip {
+  .floating-tech:nth-of-type(n) .tech-tooltip,
+  .floating-tech:hover .tech-tooltip {
+    position: static !important;
     opacity: 1 !important;
     visibility: visible !important;
-    pointer-events: auto;
-    transform: translateX(-50%) translateY(0);
+    transform: none !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    width: 100% !important;
+    pointer-events: auto !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .tech-tooltip::after {
+    display: none !important;
+  }
+
+  .tooltip-header {
+    font-size: 16px;
+    color: #fff;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+  }
+
+  .tooltip-list {
+    font-size: 13px;
+    color: #cbd5e1;
+  }
+
+  .tooltip-list li {
+    margin-bottom: 4px;
+  }
+
+  /* Desactivar cualquier efecto de enfoque general al pasar el mouse */
+  #tech-stack:has(.floating-tech:hover) .floating-tech:not(:hover) {
+    filter: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Mobile (≤768px) — Grilla de 1 columna */
+@media (max-width: 768px) {
+  #tech-stack {
+    padding: 60px 20px;
+    grid-template-columns: 1fr; /* 1 columna en celulares */
+    gap: 15px;
+  }
+
+  .floating-tech {
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .floating-tech img {
+    width: 45px !important;
+    height: 45px !important;
+  }
+
+  .tooltip-header {
+    font-size: 15px;
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+  }
+
+  .tooltip-list {
+    font-size: 12px;
   }
 }
 
@@ -615,62 +594,17 @@
 @media (max-width: 480px) {
   #tech-stack {
     padding: 40px 15px;
-    gap: 16px;
-  }
-
-  .floating-tech {
-    width: 50px;
-    height: 50px;
-  }
-
-  .tech-tooltip {
-    width: 160px;
-    padding: 0.6rem;
-  }
-
-  .tooltip-header {
-    font-size: 13px;
-    margin-bottom: 5px;
-    padding-bottom: 4px;
-  }
-
-  .tooltip-list {
-    font-size: 11px;
-  }
-
-  .tooltip-list li {
-    gap: 5px;
-    margin-bottom: 2px;
   }
 }
 
-/* Touch devices: Deshabilitar hover y usar solo .tooltip-activo */
-@media (hover: none) {
+/* Touch devices (Hover no soportado) — Prevenir comportamientos extraños de CSS en PC táctiles grandes */
+@media (hover: none) and (min-width: 1025px) {
   .floating-tech:hover .tech-tooltip {
-    opacity: 0 !important;
-    visibility: hidden !important;
-  }
-
-  .floating-tech:hover {
-    animation-play-state: running;
-    z-index: auto;
-    filter: none;
     opacity: 1;
+    visibility: visible;
   }
-
-  /* Solo mostrar con clase de JS */
-  .floating-tech.tooltip-activo {
-    z-index: 100;
-  }
-
-  .floating-tech.tooltip-activo > .tech-tooltip {
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto;
-    transform: translateX(-50%) translateY(0);
-  }
-
-  #tech-stack:has(.floating-tech:hover) .floating-tech:not(:hover) {
+  .floating-tech:hover {
+    animation-play-state: paused;
     filter: none;
     opacity: 1;
   }

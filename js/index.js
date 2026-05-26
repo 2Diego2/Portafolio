@@ -34,6 +34,9 @@ tech.forEach(tecnologia => observador.observe(tecnologia));
 // Siempre registrar click handlers (funciona en touch Y desktop)
 tech.forEach(item => {
     item.addEventListener('click', (e) => {
+        // Deshabilitar interacción de tooltip en mobile/tablet porque siempre son visibles
+        if (window.innerWidth <= 1024) return;
+
         e.preventDefault();
         e.stopPropagation();
 

@@ -1,4 +1,4 @@
-/* ============ CONTACTO + FOOTER: INTERACTIVIDAD ============ */
+/* ============ CONTACTO + FOOTER INTERACTIVIDAD ============ */
 
 document.addEventListener('DOMContentLoaded', () => {
 

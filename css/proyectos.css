@@ -677,9 +677,10 @@
   font-size: 3rem;
   margin-bottom: 20px;
   color: #fff;
-  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 10px;
 }
 
 /* ============ RESPONSIVE ============ */
@@ -920,4 +921,4 @@
     background: rgba(255, 255, 255, 0.05);
     transform: translateY(-2px);
   }
-}
+}
